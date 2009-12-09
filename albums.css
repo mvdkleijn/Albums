@@ -1,0 +1,180 @@
+div.album-holder {
+	border: 1px solid #f1f1f1;
+	background-color: #fcfcfc;
+	padding: 20px;
+	margin: 10px;
+}
+
+div.album-holder:hover {
+	background-color: #f9f9f9;
+}
+
+div.album-holder-clear, div.form-clear {
+	clear: both;
+}
+
+div.form-clear {
+	padding-top: 10px;
+}
+
+div.cover-image {
+	float: left;
+	padding: 2%;
+	width: 30%;
+}
+
+div.album-info {
+	float: right;
+	width: 65%;
+}
+
+div.album-view img, div.cover-image img {
+	padding: 10px;
+	margin: 10px;
+	margin-top: 0px;
+	border: 1px solid #f1f1f1;
+}
+
+div.album-view img:hover, div.cover-image img:hover {
+	border: 1px solid #000000;
+	background-color: #f9f9f9;
+}
+
+span.delete {
+	background-color: #f1f1f1;
+	padding: 15px;
+}
+
+input.albumsStyleConfirm {
+	font-size: 1.2em;
+	border: none;
+	padding: 5px;
+	background-color: #f1f1f1;
+}
+
+input.albumsStyleCancel {
+	font-size: 1em;
+	border: none;
+	padding: 5px;
+	background-color: #f9f9f9;
+}
+
+input.albumsStyleCancel:hover, input.albumsStyleConfirm:hover {
+	color: #FFFFFF;
+	background-color: #999;
+}
+
+span.delete a {
+	text-decoration: none;
+	padding: 15px;
+}
+
+span.cancel {
+	background-color: #f9f9f9;
+	padding: 10px;
+}
+
+span.cancel a {
+	text-decoration: none;
+	padding: 10px;
+}
+
+div.label {
+	float: left;
+	width: 15%;
+	padding-right: 2%;
+	text-align: right;
+}
+
+div.field {
+	float: right;
+	width: 80%;
+}
+
+p#result {
+	padding: 10px;
+	font-weight: bold;
+}
+
+div.result-holder {
+	padding-left: 19%;
+}
+
+.editable {
+	color: #454545;
+}
+
+.editRegion {
+	cursor: pointer;
+	font-style: italic;
+	background-color: #ffffd3;
+}
+
+#previousNextWrapper {
+	clear: both;
+	height: 150px;
+	width: 100%;
+}
+
+#previousNextWrapper a {
+	text-decoration: none;
+}
+
+#previousImage {
+	position: relative;
+	text-align: left;
+	left: 0px;
+	float: left;
+}
+
+#nextImage {
+	position: relative;
+	right: 0px;
+	float: right;
+	text-align: right;
+}
+
+div.album-view ul {
+	padding: 10px;
+	border: 1px solid #f1f1f1;
+	background-color: #fcfcfc;
+}
+
+div.album-view ul li {
+	cursor: move;
+	width: 200px;
+	margin-bottom: 20px;
+	padding-top: 10px;
+}
+
+div.album-view ul li #imageWrapper {
+	width: 30%;
+}
+
+div.album-view ul.images li.over {
+	background-color:#FFFFCC;
+}
+
+#imageWrapper {
+	width: 150px;
+}
+
+#imageInfo {
+	left: 220px;
+	width: 450px;
+	position: absolute;
+}
+
+a.imageLink {
+	text-decoration: none;
+}
+
+.album-view {
+}
+
+p#note {
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #000000;
+	background-color: #f9f9f9;
+}
