@@ -17,10 +17,14 @@
 	}
 ?>
 
+<a href="<?php echo get_url('albums?view=detail'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/info.png'; ?>" /></a>
+<a href="<?php echo get_url('albums?view=grid'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/grid.png'; ?>" /></a>
+
 <div class="albums">
 <?php
 	foreach($albums as $album) {
 		$coverImage = Albums::getCoverImage($album['id']);
+		if($_GET['view'] == 'detail') {
 ?>
 	<div class="album-holder">
 		<div class="cover-image">
@@ -59,6 +63,26 @@
 		</div>
 	</div>
 <?php
+		}
+		elseif($_GET['view']=='grid') {
+?>
+		<div id="image-holder-grid">
+				<a href="<?php echo get_url('albums/view/'.$album['id'].''); ?>" title="View / Edit Album: <?php echo $album['name']; ?>">
+					<h3><?php echo $album['name']; ?></h3>
+	<?php
+				
+					if($coverImage[0]['coverImage'] != 0) {
+						echo '<img src="' . Albums::urlToImage($coverImage[0]['coverImage'], '150') . '" alt="' . $album['name'] . '" />';
+					} else {
+						$settings = Plugin::getAllSettings('albums');
+						echo 'No Images yet!';
+					}
+					
+	?>
+				</a>
+		</div>
+<?php
+		}
 	}
 ?>
 </div>

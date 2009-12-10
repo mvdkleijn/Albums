@@ -20,6 +20,7 @@
 						('albums','route','album-images'),
 						('albums','maxHeight','1000'),
 						('albums','maxWidth','1000'),
+						('albums','defaultView','detail'),
 						('albums','logging','off')
 				;";
 	}
