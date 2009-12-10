@@ -26,7 +26,16 @@
 		<div class="cover-image">
 			<p align="center">
 				<a href="<?php echo get_url('albums/view/'.$album['id'].''); ?>" title="View / Edit Album: <?php echo $album['name']; ?>">
-					<img src="<?php echo Albums::urlToImage($coverImage[0]['coverImage'], '150'); ?>" alt="<?php echo $album['name']; ?>" />
+<?php
+				
+					if($coverImage[0]['coverImage'] != 0) {
+						echo '<img src="' . Albums::urlToImage($coverImage[0]['coverImage'], '150') . '" alt="' . $album['name'] . '" />';
+					} else {
+						$settings = Plugin::getAllSettings('albums');
+						echo 'No Images yet!';
+					}
+					
+?>
 				</a>
 			</p>
 			<p align="center">[<?php if($album['published'] == 'no') { echo 'Not Published'; } else { echo 'Published'; } ?>]</p>
