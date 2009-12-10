@@ -41,7 +41,6 @@ class Serve {
 		}
 		$onFile = Albums::getImage($imageId);
 		$fileOnDisk = '/home2/northern/public_html/wolf/plugins/albums/files/'.$imageId.'.'.$onFile[0]['extension'].'';
-//		print_r($fileOnDisk);
 		$imageInfo = getimagesize($fileOnDisk);
 		if($imageWidth != 0) {
 			if($imageWidth <= $imageInfo[0]) {
@@ -68,6 +67,9 @@ class Serve {
 	private function LoadImage($fileOnDisk, $type) {
 		switch($type) {
 			case 'jpg':		
+				$image = @imagecreatefromjpeg($fileOnDisk);
+				break;
+			case 'jpeg':		
 				$image = @imagecreatefromjpeg($fileOnDisk);
 				break;
 			case 'gif':		
