@@ -27,8 +27,10 @@
 <?php	} else {	?>
 <p><span class="editRegion" id="description"><?php echo $album[0]['description']; ?></span></p>
 <?php	} ?>
-<?php if(count($images) != 0) { ?>
+<?php if(count($images) > 1) { ?>
 <p id="note"><strong>Note:</strong> Simply drag photos to rearrange them. The new order will be saved automatically.</p>
+<?php }
+	  if(count($images) != 0) { ?>
 <div class="album-view">
 	<ul id="images" class="images">
 <?php

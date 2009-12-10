@@ -41,8 +41,8 @@
 <?php $imageInfo = getimagesize(CORE_ROOT . '/plugins/albums/files/'.$image[0]['id'].'.'.$image[0]['extension'].''); ?>
 
 <p>
-	Width: <?php echo $imageInfo[0]; ?>px<br />
-	Height: <?php echo $imageInfo[1]; ?>px<br />
+	&harr; Width: <?php echo $imageInfo[0]; ?>px<br />
+	&uarr; Height: <?php echo $imageInfo[1]; ?>px<br />
 	Added on <?php echo date('jS F, Y', $image[0]['timeAdded']); ?>
 </p>
 
@@ -82,4 +82,4 @@
 		</form>
 </p>
 
-<p>x <a href="<?php echo get_url('albums/delete-image/'.$image[0]['id'].''); ?>">Delete this image</a></p>
+<p>&times; <a href="<?php echo get_url('albums/delete-image/'.$image[0]['id'].''); ?>">Delete this image</a></p>

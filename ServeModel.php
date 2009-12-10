@@ -4,7 +4,8 @@ class Serve {
 
 	const ALBUMS	=	"albums";
 	const IMAGES	=	"albums_images";
-	const LOGS		=	"albums_logs";
+	const LOGS		=	"albums_log";
+	const ORDER		=	"albums_order";
 
 	function executeSql($sql) {
 		global $__CMS_CONN__;
@@ -39,18 +40,18 @@ class Serve {
 				break;
 		}
 		$onFile = Albums::getImage($imageId);
-		$fileOnDisk = '/home2/northern/public_html/wolf/plugins/albums/files/'.$imageId.'.'.$imageExtension.'';
+		$fileOnDisk = '/home2/northern/public_html/wolf/plugins/albums/files/'.$imageId.'.'.$onFile[0]['extension'].'';
+//		print_r($fileOnDisk);
 		$imageInfo = getimagesize($fileOnDisk);
 		if($imageWidth != 0) {
 			if($imageWidth <= $imageInfo[0]) {
 				$targetFile = str_replace('.'.$imageExtension.'', '.'.$imageWidth.'.'.$imageExtension.'', $fileOnDisk);
-				if(!file_exists($targetFile)) self::resizeImage($fileOnDisk, $imageWidth, ''.$targetFile.'');
+				if(!file_exists($targetFile)) self::resizeImageForBrowser($fileOnDisk, $imageWidth, ''.$targetFile.'');
 				$fileOnDisk = $targetFile;
 			}
 		}
-		$img = self::LoadJpeg($fileOnDisk);
-		imagejpeg($img);
-		imagedestroy($img);
+		$image = self::LoadImage($fileOnDisk, $onFile[0]['extension']);
+		imagejpeg($image, NULL, 100);
 		$settings = Plugin::getAllSettings('albums');
 		if($settings['logging'] == 'on') {
 			$referrer ='';
@@ -60,22 +61,33 @@ class Serve {
 			$uri = $_SERVER['REQUEST_URI'];
 			Albums::addToLog($fileOnDisk, $uri, 'yes',  $referrer, $ip, $now);
 		}
+		imagedestroy($image);
 		exit;
 	}
 
-	private function LoadJpeg($imgname) {
-		$im = @imagecreatefromjpeg($imgname);
-		if(!$im) {
-			$im  = imagecreatetruecolor(400, 100);
-			$bgc = imagecolorallocate($im, 255, 255, 255);
-			$tc  = imagecolorallocate($im, 0, 0, 0);
-			imagefilledrectangle($im, 0, 0, 400, 100, $bgc);
-			imagestring($im, 5, 80, 35, 'No such image', $tc);
+	private function LoadImage($fileOnDisk, $type) {
+		switch($type) {
+			case 'jpg':		
+				$image = @imagecreatefromjpeg($fileOnDisk);
+				break;
+			case 'gif':		
+				$image = @imagecreatefromgif($fileOnDisk);
+				break;
+			case 'png':		
+				$image = @imagecreatefrompng($fileOnDisk);
+				break;
 		}
-		return $im;
+		if(!$image) {
+			$image  = imagecreatetruecolor(400, 100);
+			$backgroundColour = imagecolorallocate($image, 255, 255, 255);
+			$textColour  = imagecolorallocate($image, 0, 0, 0);
+			imagefilledrectangle($image, 0, 0, 400, 100, $backgroundColour);
+			imagestring($image, 5, 80, 35, 'No such image', $textColour);
+		}
+		return $image;
 	}
 
-	function resizeImage($img, $thumb_width, $newfilename) { 
+	function resizeImageForBrowser($img, $thumb_width, $newfilename) { 
 		$max_width = $thumb_width;
 		//Get Image size info
 		list($width_orig, $height_orig, $image_type) = getimagesize($img);

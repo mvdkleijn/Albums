@@ -125,7 +125,8 @@ class Albums {
 
 	public function urlToImage($pictureId, $size) {
 		$settings = Plugin::getAllSettings('albums');
-		return URL_PUBLIC . $settings['route'] . '/' . $pictureId .'.' . $size . '.jpg';
+		$image = self::getImage($pictureId);
+		return URL_PUBLIC . $settings['route'] . '/' . $pictureId .'.' . $size . '.'.$image[0]['extension'].'';
 	}
 
 	public function deleteAlbum($id) {
@@ -181,8 +182,6 @@ class Albums {
 			self::moveFile($insertID, $_FILES['image']['tmp_name']);
 			self::updateAlbumStamp($_POST['album']);
 			echo 'This image has been uploaded. You can add another one now, or <a href="'.get_url('albums/view/'.$_POST['album'].'').'">go back to the album</a>';
-		} else {
-			echo 'The supplied image was not valid. Please ensure it is no larger than 1000px high!';
 		}
 	}
 
@@ -230,7 +229,8 @@ class Albums {
 	}
 
 	private function moveFile($id, $tmp) {
-		$targetFile = CORE_ROOT . '/plugins/albums/files/' . $id . '.jpg';
+		$image = self::getImage($id);
+		$targetFile = CORE_ROOT . '/plugins/albums/files/' . $id . '.'.$image[0]['extension'].'';
 		if (is_uploaded_file($tmp)) {
 			if(move_uploaded_file($tmp, $targetFile)) {
 				return TRUE;
@@ -246,11 +246,12 @@ class Albums {
 
 	private function validateImage($_FILES) {
 		$fileInfo = getimagesize($_FILES['image']['tmp_name']);
-		if($fileInfo['mime'] == 'image/jpeg') {
-			if($fileInfo[1] <= 1000) { return TRUE; } else { return FALSE; }
-		}
-		else {
+		$allowedMime = array('image/jpeg', 'image/png', 'image/gif');
+		if(!in_array($fileInfo['mime'], $allowedMime)) {
+			echo 'This file is not a valid image. Please use jpg, gif or png formats';
 			return FALSE;
+		} else {
+			return TRUE;
 		}
 	}
 
@@ -307,7 +308,7 @@ class Albums {
 		self::executeSql($sql);
 	}
 
-	public function addToLog($target, $uri, $served, $referrer, $ip, $now, $type) {
+	public function addToLog($target, $uri, $served, $referrer=NULL, $ip, $now) {
 		$sql = "INSERT INTO ".TABLE_PREFIX.self::LOGS."
 				VALUES(
 					'',

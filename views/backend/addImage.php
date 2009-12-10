@@ -26,6 +26,9 @@
 	}
 </script>
 
+<p id="note"><strong>Note:</strong> You can select JPG, GIF and PNG files of ANY SIZE to upload here</p>
+
+
 <form id="form" enctype="multipart/form-data" action="<?php echo get_url('albums/add-image/'.$album[0]['id'].''); ?>" method="post" onsubmit="return AIM.submit(this, {'onStart' : startCallback, 'onComplete' : completeCallback})">
 	<div class="label">&nbsp;</div>
 	<div class="result-holder"><p id="result"></p></div>

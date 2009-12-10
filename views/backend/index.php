@@ -34,7 +34,7 @@
 		<div class="album-info">
 			<h2><a href="<?php echo get_url('albums/view/'.$album['id'].''); ?>" title="View Album: <?php echo $album['name']; ?>"><?php echo $album['name']; ?></a></h2>
 			<p>
-				<?php echo Albums::countImagesInAlbum($album['id']); ?> photo<?php if(count(Albums::countImagesInAlbum($album['id'])) > 1) echo 's'; ?>
+				<?php echo Albums::countImagesInAlbum($album['id']); ?> photo<?php if((Albums::countImagesInAlbum($album['id']) != 1)) echo 's'; ?>
 			</p>
 			<p><?php echo $album['description']; ?></p>
 			<p>
@@ -43,7 +43,7 @@
 			</p>
 			<p>
 				&raquo; <a href="<?php echo get_url('albums/view/'.$album['id'].''); ?>" title="View Album: <?php echo $album['name']; ?>">View / Edit Album</a><br />
-				x <a href="<?php echo get_url('albums/delete-album/'.$album['id'].''); ?>" title="Delete Album: <?php echo $album['name']; ?>">Delete Album</a>
+				&times; <a href="<?php echo get_url('albums/delete-album/'.$album['id'].''); ?>" title="Delete Album: <?php echo $album['name']; ?>">Delete Album</a>
 			</p>
 		</div>
 		<div class="album-holder-clear">
