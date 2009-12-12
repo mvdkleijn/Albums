@@ -32,7 +32,7 @@ WHAT IT INSTALLS
 plugin_settings	-	bundled settings which are configurable via the Settings page
 albums			-	This table stores information about the Albums themselves
 albums_images	-	This table contains information about the Images
-albums_log		-	This table is installed but not you need to set logging to 'on' in the Settings page to use it
+albums_log		-	This table is installed but note that you need to set logging to 'on' in the Settings page to use it
 					It will contain information that is usually only available in Server Logs and may be useful for debugging.
 albums_order	-	When an album has more than one image, it is possible to arrange the order of the images, which is stored here.
 
@@ -47,4 +47,6 @@ NOTES
 
 		Add a hash for each image to prevent sequence guessing [requires setting to enable/disable and salt]
 		Add ability for administrators to export an album to a zip and download.
-		Add batch import facilities
+		Batch import via zip
+		Flickr / Facebook synchronisation
+		Caching options - at the moment there is a hard cache and no refresh if original image is updated. Perhaps a cron...

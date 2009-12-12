@@ -1,3 +1,15 @@
+#viewOptions {
+	border: 1px solid #f1f1f1;
+	background-color: #fcfcfc;
+	padding: 10px;
+	float: right;
+	margin: 10px;
+}
+
+#viewOptions a {
+	text-decoration: none;
+}
+
 div.album-holder {
 	border: 1px solid #f1f1f1;
 	background-color: #fcfcfc;

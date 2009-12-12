@@ -17,8 +17,12 @@
 	}
 ?>
 
-<a href="<?php echo get_url('albums?view=detail'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/info.png'; ?>" /></a>
-<a href="<?php echo get_url('albums?view=grid'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/grid.png'; ?>" /></a>
+<div id="viewOptions">
+	<a href="<?php echo get_url('albums?view=detail'); ?>"><img align="middle" src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/info.png'; ?>" /> view in detail</a><br />
+	<a href="<?php echo get_url('albums?view=grid'); ?>"><img align="middle" src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/grid.png'; ?>" /> view in grid</a>
+</div>
+
+<div style="clear:both;"></div>
 
 <div class="albums">
 <?php

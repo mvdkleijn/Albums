@@ -1,10 +1,4 @@
-
-/**
-*
-*  AJAX IFRAME METHOD (AIM)
-*  http://www.webtoolkit.info/
-*
-**/
+// AJAX IFRAME METHOD (AIM) - http://www.webtoolkit.info
 
 AIM = {
 
@@ -64,6 +58,7 @@ Event.observe(window, 'load', init, false);
 function init(){
 	makeEditable('name');
 	makeEditable('description');
+	makeEditable('credits');
 }
 
 function makeEditable(id){

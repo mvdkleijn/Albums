@@ -153,6 +153,7 @@ class Albums {
 					'',
 					'".filter_var($_POST['name'], FILTER_SANITIZE_STRING)."',
 					'".filter_var($_POST['description'], FILTER_SANITIZE_STRING)."',
+					'".filter_var($_POST['credits'], FILTER_SANITIZE_STRING)."',
 					'yes',
 					'".filter_var($_POST['album'], FILTER_SANITIZE_STRING)."',
 					'$now',

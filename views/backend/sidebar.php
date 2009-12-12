@@ -1,2 +1,3 @@
-<p><a href="<?php echo get_url('albums/add'); ?>">Add an Image</a></p>
-<p><a href="<?php echo get_url('albums/addAlbum'); ?>">Create a new Album</a></p>
+<?php $coreRoot = end(explode('/', CORE_ROOT)); ?>
+<p class="button"><a href="<?php echo get_url('albums/add'); ?>"><img src="<?php echo URL_PUBLIC . $coreRoot . '/plugins/albums/images/add.png'; ?>" align="middle" alt="Add" />Add an Image</a></p>
+<p class="button"><a href="<?php echo get_url('albums/addAlbum'); ?>"><img src="<?php echo URL_PUBLIC . $coreRoot . '/plugins/albums/images/add.png'; ?>" align="middle" alt="Add" />Create a new Album</a></p>

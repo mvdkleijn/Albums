@@ -22,11 +22,20 @@
 
 <p>&nbsp;</p>
 
+<h3>Album Description:</h3>
 <?php	if($album[0]['description'] == '') { ?>
 <p><span class="editRegion" id="description">add a description</span></p>
 <?php	} else {	?>
 <p><span class="editRegion" id="description"><?php echo $album[0]['description']; ?></span></p>
 <?php	} ?>
+
+<h3>Album Credit:</h3>
+<?php	if($album[0]['credits'] == '') { ?>
+<p><span class="editRegion" id="credits">add an image credit</span></p>
+<?php	} else {	?>
+<p><span class="editRegion" id="credits"><?php echo $album[0]['credits']; ?></span></p>
+<?php	} ?>
+
 <?php if(count($images) > 1) { ?>
 <p id="note"><strong>Note:</strong> Simply drag photos to rearrange them. The new order will be saved automatically.</p>
 <?php }

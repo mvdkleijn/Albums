@@ -31,10 +31,18 @@
 	</div>
 </div>
 
+<h3>Description:</h3>
 <?php	if($image[0]['description'] == '') { ?>
 <p><span class="editRegion" id="description">add a description</span></p>
 <?php	} else {	?>
 <p><span class="editRegion" id="description"><?php echo $image[0]['description']; ?></span></p>
+<?php	} ?>
+
+<h3>Image Credits:</h3>
+<?php	if($image[0]['credits'] == '') { ?>
+<p><span class="editRegion" id="credits">add an image credit</span></p>
+<?php	} else {	?>
+<p><span class="editRegion" id="credits"><?php echo $image[0]['credits']; ?></span></p>
 <?php	} ?>
 
 <h3>Original Image Information:</h3>

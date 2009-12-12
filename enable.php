@@ -18,8 +18,6 @@
 					INSERT INTO `".TABLE_PREFIX."plugin_settings` (`plugin_id`,`name`,`value`)
 					VALUES
 						('albums','route','album-images'),
-						('albums','maxHeight','1000'),
-						('albums','maxWidth','1000'),
 						('albums','defaultView','detail'),
 						('albums','logging','off')
 				;";
@@ -36,7 +34,8 @@
 				CREATE TABLE `ns_albums` (
 					`id` int(11) NOT NULL auto_increment,
 					`name` varchar(128) default NULL,
-					`description` varchar(1024) default NULL,
+					`description` varchar(4096) default NULL,
+					`credits` varchar(1024) default NULL,
 					`created` int(16) NOT NULL default '0',
 					`updated` int(16) NOT NULL default '0',
 					`coverImage` int(11) default NULL,
@@ -51,7 +50,8 @@
 				CREATE TABLE `ns_albums_images` (
 					`id` int(11) NOT NULL auto_increment,
 					`name` varchar(128) default NULL,
-					`description` varchar(2048) default NULL,
+					`description` varchar(2096) default NULL,
+					`credits` varchar(1024) default NULL,
 					`published` enum('yes','no') NOT NULL default 'yes',
 					`album` int(11) default NULL,
 					`timeAdded` int(16) default NULL,
