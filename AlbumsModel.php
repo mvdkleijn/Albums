@@ -179,7 +179,8 @@ class Albums {
 		if($validImage == TRUE) {
 			$insertID = self::insertImage($_POST, $_FILES);
 			if($_POST['makeCoverImage'] == 'yes') self::makeCoverImage($_POST['album'], $insertID);
-			if(count(self::getImagesFromAlbum($_POST['album']) == 0)) self::makeCoverImage($_POST['album'], $insertID);
+			$countImages = count(self::getImagesFromAlbum($_POST['album']));
+			if($countImages < 1) self::makeCoverImage($_POST['album'], $insertID);
 			self::moveFile($insertID, $_FILES['image']['tmp_name']);
 			self::updateAlbumStamp($_POST['album']);
 			echo 'This image has been uploaded. You can add another one now, or <a href="'.get_url('albums/view/'.$_POST['album'].'').'">go back to the album</a>';
@@ -203,6 +204,7 @@ class Albums {
 					'',
 					'".$name."',
 					'".$description."',
+					'',
 					'$now',
 					'',
 					'',

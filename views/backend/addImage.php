@@ -48,7 +48,10 @@
 	</div>
 	<div class="form-clear"></div>
 	<div class="label"><label>Description:</label></div>
-	<div class="field"><textarea name="description"></textarea></div>
+	<div class="field"><textarea name="description" style="height:100px;"></textarea></div>
+	<div class="form-clear"></div>
+	<div class="label"><label>Image Credit:</label></div>
+	<div class="field"><textarea name="credits" style="height:50px;"></textarea></div>
 	<div class="form-clear"></div>
 	<div class="label"><label>Album:</label></div>
 	<div class="field">
