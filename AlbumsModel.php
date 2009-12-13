@@ -48,6 +48,11 @@ class Albums {
 		}
 	}
 
+	public function getRandomImageFromAlbum($albumID) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::IMAGES." WHERE album='$albumID' ORDER BY RAND() LIMIT 1";
+			return self::executeSql($sql);		
+	}
+
 	public function updateOrder($albumID, $order) {
 		$sql = "DELETE FROM ".TABLE_PREFIX.self::ORDER." WHERE album='".$albumID."'";
 		self::executeSql($sql);

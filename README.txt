@@ -50,3 +50,6 @@ NOTES
 		Batch import via zip
 		Flickr / Facebook synchronisation
 		Caching options - at the moment there is a hard cache and no refresh if original image is updated. Perhaps a cron...
+		Tagging Images
+		Categorise Albums
+		Add Settings page
