@@ -31,6 +31,21 @@
 	</div>
 </div>
 
+<h3>Tags:</h3>
+
+<p><span class="editRegion" id="tags"><?php
+	$tags = array_reverse($tags);
+	$countTags = count($tags);
+	if($countTags == 0) echo 'add a tag';
+	$i = 1;
+	foreach($tags as $tag) {
+		echo $tag['tag'];
+		if($i < $countTags) echo ', ';
+		$i= $i+1;
+	}
+?></span></p>
+<p><strong>Tags should be separated with a comma</strong></p>
+
 <h3>Description:</h3>
 <?php	if($image[0]['description'] == '') { ?>
 <p><span class="editRegion" id="description">add a description</span></p>

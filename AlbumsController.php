@@ -18,8 +18,10 @@ class AlbumsController extends PluginController {
 	}
 
 	public function editHandler($id) {
-		if($_POST['type'] == 'view' && $_POST['content'] != 'add a description') {
+		if($_POST['type'] == 'view' && $_POST['content'] != 'add a description' && $_POST['id'] != 'tags') {
 			Albums::updateAlbum($_POST, $id);
+		} else if($_POST['type'] == 'image' && $_POST['id'] == 'tags') {
+			Albums::updateTags($_POST, $id);
 		} else if($_POST['type'] == 'image' && $_POST['content'] != 'add a description') {
 			Albums::updateImage($_POST, $id);
 		}
@@ -36,7 +38,7 @@ class AlbumsController extends PluginController {
 	}
 
 	public function viewImage($id) {
-		$this->display('../plugins/albums/views/backend/viewImage', array('image' => Albums::getImage($id), 'album' => Albums::getAlbumFromImageId($id), 'previousNext' => Albums::getPreviousNext($id), 'albums' => Albums::getAlbumList()));
+		$this->display('../plugins/albums/views/backend/viewImage', array('image' => Albums::getImage($id), 'album' => Albums::getAlbumFromImageId($id), 'previousNext' => Albums::getPreviousNext($id), 'albums' => Albums::getAlbumList(), 'tags' => Albums::getImageTags($id)));
 	}
 
 	public function editImage($id) {

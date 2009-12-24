@@ -8,6 +8,7 @@ class Albums {
 	const IMAGES	=	"albums_images";
 	const LOGS		=	"albums_log";
 	const ORDER		=	"albums_order";
+	const TAGS		=	"albums_tags";
 
 	function executeSql($sql) {
 		global $__CMS_CONN__;
@@ -60,6 +61,26 @@ class Albums {
 	public function getRandomImageFromAlbum($albumID) {
 		$sql = "SELECT * FROM ".TABLE_PREFIX.self::IMAGES." WHERE album='$albumID' ORDER BY RAND() LIMIT 1";
 			return self::executeSql($sql);		
+	}
+
+	public function getImageTags($imageID) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::TAGS."";
+		$sql .= " WHERE imageID='$imageID'";
+		return self::executeSql($sql);
+	}
+
+	public function getTaggedImagesFromAlbum($album, $tag) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::IMAGES."";
+		$sql .= " WHERE album='".$album."'";
+		$albumImages = self::executeSql($sql);
+		if(count($albumImages) > 0) {
+			foreach($albumImages as $image) {
+				$tags = self::getImageTags($image['id']);
+				if(!empty($tags)) {
+					if($tags[0]['tag'] == ''.$tag.'') return $image;
+				}	
+			}
+		}
 	}
 
 	public function updateOrder($albumID, $order) {
@@ -245,6 +266,22 @@ class Albums {
 				WHERE id='".$albumID."'
 		";
 		self::executeSql($sql);
+	}
+
+	public function updateTags($_POST, $imageID) {
+		$sql = "DELETE FROM ".TABLE_PREFIX.self::TAGS." WHERE imageID='$imageID'";
+		self::executeSql($sql);
+		$tags = explode(',', $_POST['content']);
+		foreach($tags as $tag) {
+			if($tag != '') {
+				$sql = "INSERT INTO ".TABLE_PREFIX.self::TAGS." VALUES (
+							'',
+							'$imageID',
+							'".filter_var(trim($tag), FILTER_SANITIZE_STRING)."'
+						)";
+				self::executeSql($sql);
+			}
+		}
 	}
 
 	private function moveFile($id, $tmp) {

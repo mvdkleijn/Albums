@@ -91,4 +91,15 @@
 	$pdo = $__CMS_CONN__->prepare($sql);
 	$pdo->execute();
 
+	$sql =	"
+				CREATE TABLE `".TABLE_PREFIX."albums_tags` (
+					`id` int(11) NOT NULL auto_increment,
+					`imageID` int(11) default NULL,
+					`tag` varchar(64) default NULL,
+					PRIMARY KEY  (`id`)
+				);
+			";
+	$pdo = $__CMS_CONN__->prepare($sql);
+	$pdo->execute();
+
 	exit();

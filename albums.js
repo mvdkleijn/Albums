@@ -61,6 +61,7 @@ function init(){
 	makeEditable('name');
 	makeEditable('description');
 	makeEditable('credits');
+	makeEditable('tags');
 }
 
 function makeEditable(id){
