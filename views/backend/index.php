@@ -10,7 +10,7 @@
 			</div>
 			<div style="clear:both;"></div>
 <?php	} ?>
-<p>Welcome to your Albums!</p>
+<p>Welcome to the Albums plugin!</p>
 <p>It looks like you haven't set up any albums yet, so why not <a href="<?php echo get_url('albums/addAlbum'); ?>">create one now</a>?</p>
 <p>Once you've set up your first album, you can add some images to it...</p>
 <?php
@@ -18,8 +18,8 @@
 ?>
 
 <div id="viewOptions">
-	<a href="<?php echo get_url('albums?view=detail'); ?>"><img align="middle" src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/info.png'; ?>" /> view in detail</a><br />
-	<a href="<?php echo get_url('albums?view=grid'); ?>"><img align="middle" src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/grid.png'; ?>" /> view in grid</a>
+	<a href="<?php echo get_url('albums/changeView/detail'); ?>"><img align="middle" src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/info.png'; ?>" /> view in detail</a><br />
+	<a href="<?php echo get_url('albums/changeView/grid'); ?>"><img align="middle" src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/grid.png'; ?>" /> view in grid</a>
 </div>
 
 <div style="clear:both;"></div>

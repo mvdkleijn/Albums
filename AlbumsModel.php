@@ -2,6 +2,8 @@
 
 class Albums {
 
+	const SETTINGS	=	"plugin_settings";
+
 	const ALBUMS	=	"albums";
 	const IMAGES	=	"albums_images";
 	const LOGS		=	"albums_log";
@@ -12,6 +14,13 @@ class Albums {
 		$stmt = $__CMS_CONN__->prepare($sql);
 		$stmt->execute();
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+
+	public function changeView($target) {
+		$sql = "UPDATE ".TABLE_PREFIX.self::SETTINGS." SET
+					value='".filter_var($target, FILTER_SANITIZE_STRING)."'
+				WHERE plugin_id='albums' AND name='defaultView'";
+		self::executeSql($sql);
 	}
 
 	public function getAlbumList($order=NULL) {

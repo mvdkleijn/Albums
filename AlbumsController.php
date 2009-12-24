@@ -9,8 +9,12 @@ class AlbumsController extends PluginController {
 
 	public function index() {
 		$settings = Plugin::getAllSettings('albums');
-		if(!isset($_GET['view'])) redirect(get_url('albums?view='.$settings['defaultView'].''));
 		$this->display('../plugins/albums/views/backend/index', array('albums' => Albums::getAlbumList()));
+	}
+
+	public function changeView($target) {
+		Albums::changeView($target);
+		redirect(get_url('albums'));
 	}
 
 	public function serve($id) {
