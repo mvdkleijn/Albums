@@ -75,7 +75,14 @@
 				newOrder = newOrder.replace("images[]=","");
 				newOrder = newOrder.replace("&",",");
 			}
-		  	var url = 'updateOrder/<?php echo $album[0]['id']; ?>o'+newOrder;
+//		  	var url = 'updateOrder/<?php echo $album[0]['id']; ?>o'+newOrder;
+			var page = window.location.href;
+			var pageArray = page.split('/');
+			var arrayLength = pageArray.length;
+			modRewrite = '';
+			if(pageArray[4] == '?') { modRewrite = '?/'; }
+			var type_content = pageArray[arrayLength-2];
+		  	var url = pageArray[0]+'//'+pageArray[2]+'/'+pageArray[3]+'/'+modRewrite+'albums/view/updateOrder/<?php echo $album[0]['id']; ?>o'+newOrder;
 			new Ajax.Request(url, {method:'post'});
 		}
 	});

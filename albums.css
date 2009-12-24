@@ -138,7 +138,11 @@ div.result-holder {
 .editRegion {
 	cursor: pointer;
 	font-style: italic;
-	background-color: #ffffd3;
+	opacity: 1;
+	background-image: url(images/edit.png);
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 30px;
 }
 
 #previousNextWrapper {
@@ -208,4 +212,12 @@ p#note {
 	margin-bottom: 10px;
 	border: 1px solid #000000;
 	background-color: #f9f9f9;
+}
+
+#imageInfo h2 {
+	margin-top: 0px;
+}
+
+#imageInfo p {
+	margin-top: 5px;
 }

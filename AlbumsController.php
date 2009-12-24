@@ -18,7 +18,13 @@ class AlbumsController extends PluginController {
 	}
 
 	public function editHandler($id) {
-		echo 'gotcha!';
+		if($_POST['type'] == 'view' && $_POST['content'] != 'add a description') {
+			Albums::updateAlbum($_POST, $id);
+		} else if($_POST['type'] == 'image' && $_POST['content'] != 'add a description') {
+			Albums::updateImage($_POST, $id);
+		}
+		if($_POST['content'] == '') echo 'add a description';
+		echo strip_tags($_POST['content']);
 	}
 
 	public function serve($id) {
@@ -51,20 +57,6 @@ class AlbumsController extends PluginController {
 		Albums::makeCoverImage($albumID[0]['id'], $imageID);
 		Flash::set('success', __('This image has been set as the Album Cover'));
 		redirect(get_url('albums/image/'.$imageID.''));
-	}
-
-	public function editAlbumHandler($albumID) {
-		if($_POST['content'] != 'add a description')
-			Albums::updateAlbum($_POST, $albumID);
-		if($_POST['content'] == '') echo 'add a description';
-		echo strip_tags($_POST['content']);
-	}
-
-	public function editImageHandler($imageID) {
-		if($_POST['content'] != 'add a description')
-			Albums::updateImage($_POST, $imageID);
-		if($_POST['content'] == '') echo 'add a description';
-		echo strip_tags($_POST['content']);
 	}
 
 	public function uploadImage($id) {

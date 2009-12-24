@@ -52,7 +52,8 @@ AIM = {
 }
 
 
-// Adapted from 24 Ways Inline method: http://24ways.org/2005/edit-in-place-with-ajax
+// Adapted from 24 Ways: http://24ways.org/2005/edit-in-place-with-ajax
+// This does the inline editing of content
 
 Event.observe(window, 'load', init, false);
 
@@ -91,13 +92,11 @@ function showAsEditable(obj, clear){
 
 function saveChanges(obj){
 
-	// Need to figure out what we're editing here
 	var page = window.location.href;
 	var pageArray = page.split('/');
 	var arrayLength = pageArray.length;
 	var pageID = pageArray[arrayLength-1];
 	var new_content	=  escape($F(obj.id+'_edit'));
-//alert(pageArray[4]);
 	obj.innerHTML	= "Saving...";
 	cleanUp(obj, true);
 
@@ -105,13 +104,10 @@ function saveChanges(obj){
 	var failure	= function(t){editFailed(t, obj);}
 
 	modRewrite = '';
-	if(pageArray[4] == '?') {
-		modRewrite = '?/';
-	}
-
+	if(pageArray[4] == '?') { modRewrite = '?/'; }
+	var type_content = pageArray[arrayLength-2];
   	var url = pageArray[0]+'//'+pageArray[2]+'/'+pageArray[3]+'/'+modRewrite+'albums/editHandler/'+pageID+'';
-  	alert(url);
-	var pars = 'id='+obj.id+'&content='+new_content;
+	var pars = 'id='+obj.id+'&content='+new_content+'&type='+type_content;
 	var myAjax = new Ajax.Request(url, {method:'post', postBody:pars, onSuccess:success, onFailure:failure});
 
 }
