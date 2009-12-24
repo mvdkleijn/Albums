@@ -1,6 +1,9 @@
 <h1>Albums</h1>
 
 <?php
+
+	$settings = Plugin::getAllSettings('albums');
+
 	if(count($albums) == 0) {
 		$gdInfo = gd_info();
 		if($gdInfo['GD Version'] == '') { ?>
@@ -28,7 +31,7 @@
 <?php
 	foreach($albums as $album) {
 		$coverImage = Albums::getCoverImage($album['id']);
-		if($_GET['view'] == 'detail') {
+		if($settings['defaultView'] == 'detail') {
 ?>
 	<div class="album-holder">
 		<div class="cover-image">
@@ -68,7 +71,7 @@
 	</div>
 <?php
 		}
-		elseif($_GET['view']=='grid') {
+		elseif($settings['defaultView']=='grid') {
 ?>
 		<div id="image-holder-grid">
 				<a href="<?php echo get_url('albums/view/'.$album['id'].''); ?>" title="View / Edit Album: <?php echo $album['name']; ?>">
