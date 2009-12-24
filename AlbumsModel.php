@@ -140,7 +140,9 @@ class Albums {
 	public function urlToImage($pictureId, $size) {
 		$settings = Plugin::getAllSettings('albums');
 		$image = self::getImage($pictureId);
-		return URL_PUBLIC . $settings['route'] . '/' . $pictureId .'.' . $size . '.'.$image[0]['extension'].'';
+		$modRewrite = '';
+		if(USE_MOD_REWRITE == FALSE) $modRewrite = '?';
+		return URL_PUBLIC . $modRewrite . $settings['route'] . '/' . $pictureId .'.' . $size . '.'.$image[0]['extension'].'';
 	}
 
 	public function deleteAlbum($id) {
