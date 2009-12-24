@@ -31,7 +31,7 @@
 	**/
 
 	$sql =	"
-				CREATE TABLE `ns_albums` (
+				CREATE TABLE `".TABLE_PREFIX."albums` (
 					`id` int(11) NOT NULL auto_increment,
 					`name` varchar(128) default NULL,
 					`description` varchar(4096) default NULL,
@@ -47,7 +47,7 @@
 	$pdo->execute();
 
 	$sql =	"
-				CREATE TABLE `ns_albums_images` (
+				CREATE TABLE `".TABLE_PREFIX."albums_images` (
 					`id` int(11) NOT NULL auto_increment,
 					`name` varchar(128) default NULL,
 					`description` varchar(2096) default NULL,
@@ -68,7 +68,7 @@
 	$pdo->execute();
 
 	$sql =	"
-				CREATE TABLE `ns_albums_log` (
+				CREATE TABLE `".TABLE_PREFIX."albums_log` (
 					`id` int(11) NOT NULL auto_increment,
 					`image` varchar(512) default NULL,
 					`uri` varchar(512) default NULL,
@@ -83,7 +83,7 @@
 	$pdo->execute();
 
 	$sql =	"
-				CREATE TABLE `ns_albums_order` (
+				CREATE TABLE `".TABLE_PREFIX."albums_order` (
 					`album` int(11) default NULL,
 					`order` varchar(512) default NULL
 				);

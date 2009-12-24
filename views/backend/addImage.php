@@ -1,6 +1,14 @@
 <?php
 
-	if(count($albums) == 0) { ?>
+	$saveFolder = CORE_ROOT .'/plugins/albums/files';
+
+	if(!is_writeable($saveFolder)) {
+?>
+<h1>I need some help!</h1>
+<p>We need to be able to upload images to your server and at the moment the folder:<br /><small><?php echo $saveFolder; ?></small><br />is not writeable. Please can you CHMOD that folder to 755 and I can then let you upload some images!</p>
+<?php
+	}
+	elseif(count($albums) == 0) { ?>
 <h1>Just a Moment...</h1>
 <p>Before you can add an image, you must <a href="<?php echo get_url('albums/addAlbum'); ?>">add an Album</a></p>
 <?php

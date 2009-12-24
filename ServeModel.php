@@ -40,7 +40,7 @@ class Serve {
 				break;
 		}
 		$onFile = Albums::getImage($imageId);
-		$fileOnDisk = '/home2/northern/public_html/wolf/plugins/albums/files/'.$imageId.'.'.$onFile[0]['extension'].'';
+		$fileOnDisk = CORE_ROOT.'/plugins/albums/files/'.$imageId.'.'.$onFile[0]['extension'].'';
 		$imageInfo = getimagesize($fileOnDisk);
 		if($imageWidth != 0) {
 			if($imageWidth <= $imageInfo[0]) {

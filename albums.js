@@ -1,4 +1,5 @@
-// AJAX IFRAME METHOD (AIM) - http://www.webtoolkit.info
+// AJAX IFRAME METHOD (AIM) - http://www.webtoolkit.info/ajax-file-upload.html
+// This does the image uploading in the background
 
 AIM = {
 
@@ -90,20 +91,26 @@ function showAsEditable(obj, clear){
 
 function saveChanges(obj){
 
-	var page = window.location.pathname;
+	// Need to figure out what we're editing here
+	var page = window.location.href;
 	var pageArray = page.split('/');
 	var arrayLength = pageArray.length;
 	var pageID = pageArray[arrayLength-1];
-
 	var new_content	=  escape($F(obj.id+'_edit'));
-
+//alert(pageArray[4]);
 	obj.innerHTML	= "Saving...";
 	cleanUp(obj, true);
 
 	var success	= function(t){editComplete(t, obj);}
 	var failure	= function(t){editFailed(t, obj);}
 
-  	var url = 'editHandler/'+pageID+'';
+	modRewrite = '';
+	if(pageArray[4] == '?') {
+		modRewrite = '?/';
+	}
+
+  	var url = pageArray[0]+'//'+pageArray[2]+'/'+pageArray[3]+'/'+modRewrite+'albums/editHandler/'+pageID+'';
+  	alert(url);
 	var pars = 'id='+obj.id+'&content='+new_content;
 	var myAjax = new Ajax.Request(url, {method:'post', postBody:pars, onSuccess:success, onFailure:failure});
 

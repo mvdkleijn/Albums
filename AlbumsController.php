@@ -17,6 +17,10 @@ class AlbumsController extends PluginController {
 		redirect(get_url('albums'));
 	}
 
+	public function editHandler($id) {
+		echo 'gotcha!';
+	}
+
 	public function serve($id) {
 		Serve::serveImage($id);
 	}
