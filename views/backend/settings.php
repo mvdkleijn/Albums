@@ -8,9 +8,19 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="label">Image Route</td>
-			<td class="field"><small><?php echo URL_PUBLIC; ?><input name="route" value="<?php echo $settings['route']; ?>" />/image.jpg</small></td>
+			<td class="label" rowspan="2">Image Route</td>
+			<td class="field"><small><?php echo URL_PUBLIC; ?><input name="route" value="<?php echo $settings['route']; ?>" />/imageid.jpg</small></td>
 			<td class="help">The path on the front end to display images from. Think of this as a virtual folder of images.</td>
+		</tr>
+		<tr>
+			<td class="field">
+				<select name="useStructure">
+					<option value="yes"<?php if($settings['useStructure'] == 'yes') echo ' selected="selected"'; ?>>Yes</option>
+					<option value="no"<?php if($settings['useStructure'] == 'no') echo ' selected="selected"'; ?>>No</option>
+					<option value="both"<?php if($settings['useStructure'] == 'both') echo ' selected="selected"'; ?>>Use Both</option>
+				</select>
+			</td>
+			<td class="help">You can route images based on their internal structure from this route. Something along the lines of: <small><?php echo URL_PUBLIC; ?><?php echo $settings['route']; ?>/category/album/imageid.jpg</small>.<br />Would you like to do this?</td>
 		</tr>
 		<tr>
 			<td class="label">Default View</td>

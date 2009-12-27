@@ -9,6 +9,7 @@ class Albums {
 	const LOGS		=	"albums_log";
 	const ORDER		=	"albums_order";
 	const TAGS		=	"albums_tags";
+	const CATEGORIES =	"albums_categories";
 
 	function executeSql($sql) {
 		global $__CMS_CONN__;
@@ -134,7 +135,6 @@ class Albums {
 		self::executeSql($sql);
 	}
 
-
 	public function getAlbumFromImageId($imageId) {
 		$sql = "SELECT * FROM ".TABLE_PREFIX.self::IMAGES."";
 		$sql .= " WHERE id='$imageId'";
@@ -236,29 +236,35 @@ class Albums {
 	public function addAlbumHandler($_POST) {
 		if($_POST['name'] == '') echo 'You must give the album a name<br />';
 		if($_POST['name'] == '') exit();
-		self::insertAlbum($_POST['name'], $_POST['description']);
+		self::insertAlbum($_POST['name'], $_POST['description'], $_POST['credits'], $_POST['category']);
 		global $__CMS_CONN__;
 		$this->db = $__CMS_CONN__;
 		$insertID = $this->db->lastInsertId();
 		echo 'Your album has been added. You can add another album, or <a href="'.get_url('albums/add/'.$insertID.'').'">add images to your album</a>.';
 	}
 
-	private function insertAlbum($name, $description) {
+	private function insertAlbum($name, $description=NULL, $credits=NULL, $category=NULL) {
 		$now = time();
+		if($category == NULL) $category = '1';
 		$sql = "INSERT INTO ".TABLE_PREFIX.self::ALBUMS."
 				VALUES(
 					'',
 					'".$name."',
 					'".$description."',
-					'',
+					'".$credits."',
 					'$now',
 					'',
 					'',
-					'yes'
+					'".$category."',
+					'no'
 				)";
 		self::executeSql($sql);
 	}
 
+	public function getCategories() {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::CATEGORIES."";
+		return self::executeSql($sql);
+	}
 
 	public function makeCoverImage($albumID, $imageID) {
 		$sql = "UPDATE ".TABLE_PREFIX.self::ALBUMS." SET

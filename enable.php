@@ -6,9 +6,7 @@
 		Sanity Check - decide whether we're enabling for the first time or after a disable
 	**/
 
-	$sql = "
-				SELECT * FROM `".TABLE_PREFIX."plugin_settings` WHERE plugin_id='albums'
-			;";
+	$sql = "SELECT * FROM `".TABLE_PREFIX."plugin_settings` WHERE plugin_id='albums';";
 	$pdo = $__CMS_CONN__->prepare($sql);
 	$pdo->execute();
 	$rowCount = $pdo->rowCount();
@@ -17,9 +15,10 @@
 		$sql =	"
 					INSERT INTO `".TABLE_PREFIX."plugin_settings` (`plugin_id`,`name`,`value`)
 					VALUES
-						('albums','route','album-images'),
 						('albums','defaultView','detail'),
-						('albums','logging','off')
+						('albums','logging','off'),
+						('albums','route','albums'),
+						('albums','useStructure','both')
 				;";
 	}
 	$pdo = $__CMS_CONN__->prepare($sql);
@@ -92,6 +91,17 @@
 	$pdo->execute();
 
 	$sql =	"
+				CREATE TABLE `".TABLE_PREFIX."albums_categories` (
+					`id` int(11) NOT NULL AUTO_INCREMENT,
+					`name` varchar(512) DEFAULT NULL,
+					`description` varchar(4096) DEFAULT NULL,
+					PRIMARY KEY (`id`)
+				);
+			";
+	$pdo = $__CMS_CONN__->prepare($sql);
+	$pdo->execute();
+
+	$sql =	"
 				CREATE TABLE `".TABLE_PREFIX."albums_tags` (
 					`id` int(11) NOT NULL auto_increment,
 					`imageID` int(11) default NULL,
@@ -101,5 +111,21 @@
 			";
 	$pdo = $__CMS_CONN__->prepare($sql);
 	$pdo->execute();
+
+	$sql =	"SELECT COUNT(*) FROM ".TABLE_PREFIX."albums_categories";
+	$pdo = $__CMS_CONN__->prepare($sql);
+	$count = $pdo->execute();
+	if($count != 0) {
+		$sql =	"
+					INSERT INTO ".TABLE_PREFIX."albums_categories
+					VALUES (
+						'',
+						'Uncategorised',
+						'This is the default category'
+					)
+				";
+		$pdo = $__CMS_CONN__->prepare($sql);
+		$pdo->execute();
+	}
 
 	exit();

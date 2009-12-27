@@ -92,7 +92,7 @@ class AlbumsController extends PluginController {
 	}
 
 	public function addAlbum($id=NULL) {
-		$this->display('../plugins/albums/views/backend/addAlbum');
+		$this->display('../plugins/albums/views/backend/addAlbum', array('categories' => Albums::getCategories()));
 	}
 
 	public function changeAlbum() {
