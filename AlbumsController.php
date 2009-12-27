@@ -8,13 +8,31 @@ class AlbumsController extends PluginController {
 	}
 
 	public function index() {
-		$settings = Plugin::getAllSettings('albums');
 		$this->display('../plugins/albums/views/backend/index', array('albums' => Albums::getAlbumList()));
+	}
+
+	public function albums() {
+		$settings = Plugin::getAllSettings('albums');
+		$this->display('../plugins/albums/views/backend/albums', array('albums' => Albums::getAlbumList()));
+	}
+
+	public function categories() {
+		$this->display('../plugins/albums/views/backend/categories', array('albums' => Albums::getAlbumList()));
+	}
+
+	public function settings() {
+		$this->display('../plugins/albums/views/backend/settings', array('settings' => Plugin::getAllSettings('albums')));
+	}
+
+	public function saveSettings() {
+		Albums::saveSettings($_POST);
+		Flash::set('success', __('Your settings have been updated'));
+		redirect(get_url('albums/settings'));
 	}
 
 	public function changeView($target) {
 		Albums::changeView($target);
-		redirect(get_url('albums'));
+		redirect(get_url('albums/albums'));
 	}
 
 	public function editHandler($id) {
@@ -38,7 +56,7 @@ class AlbumsController extends PluginController {
 	}
 
 	public function viewImage($id) {
-		$this->display('../plugins/albums/views/backend/viewImage', array('image' => Albums::getImage($id), 'album' => Albums::getAlbumFromImageId($id), 'previousNext' => Albums::getPreviousNext($id), 'albums' => Albums::getAlbumList(), 'tags' => Albums::getImageTags($id)));
+		$this->display('../plugins/albums/views/backend/viewImage', array('image' => Albums::getImage($id), 'album' => Albums::getAlbumFromImageId($id), 'previousNext' => Albums::getPreviousNext($id), 'albums' => Albums::getAlbumList(), 'tags' => Albums::getImageTags($id), 'settings' => Plugin::getAllSettings('albums')));
 	}
 
 	public function editImage($id) {

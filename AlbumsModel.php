@@ -24,6 +24,15 @@ class Albums {
 		self::executeSql($sql);
 	}
 
+	public function saveSettings($_POST) {
+		foreach($_POST as $key=>$value) {
+			$sql = "UPDATE ".TABLE_PREFIX.self::SETTINGS." SET
+						value='".filter_var($value, FILTER_SANITIZE_STRING)."'
+					WHERE plugin_id='albums' AND name='$key'";
+			self::executeSql($sql);
+		}
+	}
+
 	public function getAlbumList($order=NULL) {
 		$sql = "SELECT * FROM ".TABLE_PREFIX.self::ALBUMS."";
 		if($order) $sql .= " ORDER BY $order";

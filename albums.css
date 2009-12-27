@@ -180,10 +180,15 @@ div.album-view ul li {
 	width: 200px;
 	margin-bottom: 20px;
 	padding-top: 10px;
+	padding-bottom: 20px;
 }
 
 div.album-view ul li #imageWrapper {
 	width: 30%;
+}
+
+div.album-view ul li #imageInfo h2 {
+	margin: 0px;
 }
 
 div.album-view ul.images li.over {
@@ -204,9 +209,6 @@ a.imageLink {
 	text-decoration: none;
 }
 
-.album-view {
-}
-
 p#note {
 	padding: 10px;
 	margin-bottom: 10px;
@@ -214,10 +216,51 @@ p#note {
 	background-color: #f9f9f9;
 }
 
+div.originalImageInfo {
+	border: 1px solid #f1f1f1;
+	background-color: #fcfcfc;
+	padding: 20px;
+}
+
+div.originalImageInfoGeneral {
+	float: left;
+	width: 50%;
+}
+
+div.originalImageInfoDimensions {
+	float: right;
+	width: 50%;
+}
+
+img.imageView {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 1px solid #f1f1f1;
+	background-color: #fcfcfc;
+}
+
+div.metaData {
+	border: 1px solid #f1f1f1;
+	background-color: #fcfcfc;
+	padding: 20px;
+	width: 40%;margin: 2%;
+	float: left;
+}
+
+#options {
+	font-size: 0.8em;
+}
+
+.editRegion {
+	font-size: 0.8em;
+}
+
+/*
 #imageInfo h2 {
 	margin-top: 0px;
 }
 
 #imageInfo p {
 	margin-top: 5px;
-}
+}*/

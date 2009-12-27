@@ -1,3 +1,3 @@
-<?php $coreRoot = end(explode('/', CORE_ROOT)); ?>
-<p class="button"><a href="<?php echo get_url('albums/add'); ?>"><img src="<?php echo URL_PUBLIC . $coreRoot . '/plugins/albums/images/add.png'; ?>" align="middle" alt="Add" />Add an Image</a></p>
-<p class="button"><a href="<?php echo get_url('albums/addAlbum'); ?>"><img src="<?php echo URL_PUBLIC . $coreRoot . '/plugins/albums/images/add.png'; ?>" align="middle" alt="Add" />Create a new Album</a></p>
+<p class="button"><a href="<?php echo get_url('albums/add'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/add.png'; ?>" align="middle" alt="Add a new image" />Add an Image</a></p>
+<p class="button"><a href="<?php echo get_url('albums/addAlbum'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/add.png'; ?>" align="middle" alt="Create a new Album" />Create a new Album</a></p>
+<p class="button"><a href="<?php echo get_url('albums/settings'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/settings.png'; ?>" align="middle" alt="Settings" />Settings</a></p>
