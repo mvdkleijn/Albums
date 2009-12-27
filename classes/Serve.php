@@ -15,10 +15,8 @@ class Serve {
 	}
 
 	public function serveImage($id) {
-
 		$file = explode('.', $id);
 		$count = count($file);
-
 		switch($count) {
 			case 2:
 				$imageId = $file[0];
@@ -39,8 +37,17 @@ class Serve {
 				$imageExtension = $file[3];
 				break;
 		}
-		$onFile = Albums::getImage($imageId);
-		$fileOnDisk = CORE_ROOT.'/plugins/albums/files/'.$imageId.'.'.$onFile[0]['extension'].'';
+		$settings = Plugin::getAllSettings('albums');
+		if($settings['format'] == 'numeric') {
+			$onFile = Albums::getImage($imageId);
+			$onFile = $onFile[0];
+		} elseif($settings['format'] == 'hash') {
+			$onFile = Albums::getImageByMDFive($imageId);
+		} elseif($settings['format'] == 'name') {
+			$onFile = Albums::getImageByName($imageId);
+			$onFile = $onFile[0];
+		}
+		$fileOnDisk = CORE_ROOT.'/plugins/albums/files/'.$onFile['id'].'.'.$onFile['extension'].'';
 		$imageInfo = getimagesize($fileOnDisk);
 		if($imageWidth != 0) {
 			if($imageWidth <= $imageInfo[0]) {
@@ -49,7 +56,7 @@ class Serve {
 				$fileOnDisk = $targetFile;
 			}
 		}
-		$image = self::LoadImage($fileOnDisk, $onFile[0]['extension']);
+		$image = self::LoadImage($fileOnDisk, $onFile['extension']);
 		imagejpeg($image, NULL, 100);
 		$settings = Plugin::getAllSettings('albums');
 		if($settings['logging'] == 'on') {

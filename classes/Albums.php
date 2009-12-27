@@ -154,6 +154,22 @@ class Albums {
 		return self::executeSql($sql);
 	}
 
+	public function getImageByName($imageId) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::IMAGES."";
+		$sql .= " WHERE name='$imageId'";
+		return self::executeSql($sql);
+	}
+
+	public function getImageByMDFive($imageId) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::IMAGES."";
+		$results = self::executeSql($sql);
+		$settings = Plugin::getAllSettings('albums');
+		foreach($results as $result) {
+			$thisMD = md5($result['id'] . $settings['salt']);
+			if($thisMD == $imageId) return($result);
+		}
+	}
+
 	public function getCoverImage($albumId) {
 		$sql = "SELECT coverImage FROM ".TABLE_PREFIX.self::ALBUMS."";
 		$sql .= " WHERE id='$albumId'";
@@ -170,6 +186,13 @@ class Albums {
 	public function urlToImage($pictureId, $size) {
 		$settings = Plugin::getAllSettings('albums');
 		$image = self::getImage($pictureId);
+		if($settings['format'] == 'numeric') {
+			$pictureId = $pictureId;
+		} elseif($settings['format'] == 'hash') {
+			$pictureId = md5($pictureId . $settings['salt']);
+		} elseif($settings['format'] == 'name') {
+			$pictureId = $image[0]['name'];
+		}
 		$modRewrite = '';
 		if(USE_MOD_REWRITE == FALSE) $modRewrite = '?';
 		return URL_PUBLIC . $modRewrite . $settings['route'] . '/' . $pictureId .'.' . $size . '.'.$image[0]['extension'].'';

@@ -54,3 +54,4 @@ NOTES
 		Batch import via zip and multiple uploads
 		Flickr / Facebook synchronisation
 		Categorise Albums
+		Image Routing through category/album/image

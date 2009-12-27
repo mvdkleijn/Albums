@@ -43,6 +43,24 @@
 			<td class="help">You can enable logging of image impressions. This is handy to see how popular certain images are or if you want to display a view count.</td>
 		</tr>
 		<tr>
+			<td class="label">Format</td>
+			<td class="field">
+				<select name="format">
+					<option value="numeric"<?php if($settings['format'] == 'numeric') echo ' selected="selected"'; ?>>Numeric</option>
+					<option value="hash"<?php if($settings['format'] == 'hash') echo ' selected="selected"'; ?>>Hash</option>
+					<option value="name"<?php if($settings['format'] == 'name') echo ' selected="selected"'; ?>>Image Name</option>
+				</select>
+			</td>
+			<td class="help">Image ID's may be numeric (213.jpg), hashed with a salt (ded80474080b5a99df0e30128192ca31.jpg) or you can use the image name (My%20Picture.jpg). Hashing offers more secure images, and uses the plugin install timestamp as the salt. Note that if you use the image name, all casing and spaces / characters will be used in HTML entity equivalents.</td>
+		</tr>
+		<tr>
+			<td class="label">Hash Salt</td>
+			<td class="field">
+				<input name="salt" value="<?php echo $settings['salt']; ?>" />
+			</td>
+			<td class="help">If you use the hash format above, you can change the salt here.</td>
+		</tr>
+		<tr>
 			<td class="label">&nbsp;</td>
 			<td class="field" colspan="2">
 				<input type="submit" value="Save Settings" />

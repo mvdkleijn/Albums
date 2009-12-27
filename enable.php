@@ -18,6 +18,7 @@
 						('albums','defaultView','detail'),
 						('albums','logging','off'),
 						('albums','route','albums'),
+						('albums','salt','".time()."'),
 						('albums','useStructure','both')
 				;";
 	}

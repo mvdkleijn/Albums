@@ -14,8 +14,8 @@ Plugin::setInfos(array(
 ));
 
 Plugin::addController('albums', 'Albums', 'administrator,developer,editor', TRUE);
-include('AlbumsModel.php');
-include('ServeModel.php');
+include('classes/Albums.php');
+include('classes/Serve.php');
 
 $settings = Plugin::getAllSettings('albums');
 if(count($settings) != 0) { $serveRoute = $settings['route']; } else { $serveRoute = 'default-defunct-route'; }
