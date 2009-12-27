@@ -1,0 +1,2 @@
+<h1>Categories</h1>
+<p>You can categorise your images depending on the context they're being used in. For example, you may want to set up albums for your contact and about page and then categorise them in a "Site Images" category. You can choose to ignore the categorisation features but it does make bigger sites image media assets easier to manage.</p>
