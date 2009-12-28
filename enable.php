@@ -35,11 +35,13 @@
 				CREATE TABLE `".TABLE_PREFIX."albums` (
 					`id` int(11) NOT NULL auto_increment,
 					`name` varchar(128) default NULL,
+					`slug` varchar(128) default NULL,
 					`description` varchar(4096) default NULL,
 					`credits` varchar(1024) default NULL,
 					`created` int(16) NOT NULL default '0',
 					`updated` int(16) NOT NULL default '0',
 					`coverImage` int(11) default NULL,
+					`category` int(11) NOT NULL,
 					`published` enum('yes','no') default NULL,
 					PRIMARY KEY	(`id`)
 				) AUTO_INCREMENT=0;
@@ -95,7 +97,8 @@
 	$sql =	"
 				CREATE TABLE `".TABLE_PREFIX."albums_categories` (
 					`id` int(11) NOT NULL AUTO_INCREMENT,
-					`name` varchar(512) DEFAULT NULL,
+					`name` varchar(128) DEFAULT NULL,
+					`slug` varchar(128) default NULL,
 					`description` varchar(4096) DEFAULT NULL,
 					PRIMARY KEY (`id`)
 				);
@@ -123,6 +126,7 @@
 					VALUES (
 						'',
 						'Uncategorised',
+						'uncategorised',
 						'This is the default category'
 					)
 				";
