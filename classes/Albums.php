@@ -214,11 +214,9 @@ class Albums {
 		$modRewrite = '';
 		if(USE_MOD_REWRITE == FALSE) $modRewrite = '?';
 		$route = $settings['route'];
-		if($settings['useStructure'] == 'both' || $settings['useStructure'] == 'yes') {
-			$category = self::getImageCategoryFromAlbum($image[0]['album']);
-			$album = self::getImageAlbumSlug($image[0]['album']);
-			$route = $route . '/' . $category['slug'] . '/' . $album['slug'];
-		}
+		$category = self::getImageCategoryFromAlbum($image[0]['album']);
+		$album = self::getImageAlbumSlug($image[0]['album']);
+		$route = $route . '/' . $category['slug'] . '/' . $album['slug'];
 		return URL_PUBLIC . $modRewrite . $route . '/' . $pictureId .'.' . $size . '.'.$image[0]['extension'].'';
 	}
 

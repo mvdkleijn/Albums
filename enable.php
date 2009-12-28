@@ -19,8 +19,7 @@
 						('albums','logging','off'),
 						('albums','format','numeric'),
 						('albums','route','albums'),
-						('albums','salt','".time()."'),
-						('albums','useStructure','both')
+						('albums','salt','".time()."')
 				;";
 	}
 	$pdo = $__CMS_CONN__->prepare($sql);
