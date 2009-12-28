@@ -47,8 +47,43 @@ class AlbumsController extends PluginController {
 		echo strip_tags($_POST['content']);
 	}
 
-	public function serve($id) {
-		Serve::serveImage($id);
+	public function serve($id, $idTwo=NULL, $idThree=NULL) {
+		if($idTwo != NULL && $idThree != NULL) {
+			$isValid = self::checkRouteIsValid($id, $idTwo, $idThree);
+			if($isValid == TRUE) {
+				Serve::serveImage($idThree);
+			}
+		} else {
+			Serve::serveImage($id);
+		}
+	}
+
+	public function checkRouteIsValid($category, $album, $image) {
+		$image = explode('.', $image);
+		$settings = Plugin::getAllSettings('albums');
+		if($settings['format'] == 'numeric') {
+			$image = Albums::getImage($image[0]);
+			$image = $image[0];
+		} elseif($settings['format'] == 'hash') {
+			$image = Albums::getImageByMDFive($image[0]);
+		} elseif($settings['format'] == 'name') {
+			$image = Albums::getImageByName($image[0]);
+			$image = $image[0];
+		}
+		$album = Albums::getAlbumBySlug($album);
+		$category = Albums::getCategoryBySlug($category);
+		if(!empty($image) && !empty($album) && !empty($category)) {
+			if($image['album'] == $album[0]['id']) {
+				if($album[0]['category'] == $category[0]['id']) {
+					return TRUE;
+				} else {
+					return FALSE;
+				}
+			}
+			else {
+				return FALSE;
+			}
+		}
 	}
 
 	public function viewAlbum($id) {

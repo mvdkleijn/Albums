@@ -257,6 +257,11 @@ div.metaData {
 	font-size: 0.8em;
 }
 
+table.fieldset td.field {
+  vertical-align: top;
+  padding-top: 10px;
+}
+
 /*
 #imageInfo h2 {
 	margin-top: 0px;

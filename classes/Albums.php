@@ -46,6 +46,24 @@ class Albums {
 		return self::executeSql($sql);
 	}
 
+	public function getAlbumBySlug($slug) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::ALBUMS."";
+		$sql .= " WHERE slug='$slug'";
+		return self::executeSql($sql);
+	}
+
+	public function getCategoryBySlug($slug) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::CATEGORIES."";
+		$sql .= " WHERE slug='$slug'";
+		return self::executeSql($sql);
+	}
+
+	public function getCategory($id) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::CATEGORIES."";
+		$sql .= " WHERE id='$id'";
+		return self::executeSql($sql);
+	}
+
 	public function getImagesFromAlbum($albumId) {
 		$order = self::getOrder($albumId);
 		if(count($order) != 0) {
@@ -154,9 +172,9 @@ class Albums {
 		return self::executeSql($sql);
 	}
 
-	public function getImageByName($imageId) {
+	public function getImageByName($name) {
 		$sql = "SELECT * FROM ".TABLE_PREFIX.self::IMAGES."";
-		$sql .= " WHERE name='$imageId'";
+		$sql .= " WHERE name='$name'";
 		return self::executeSql($sql);
 	}
 
@@ -195,7 +213,28 @@ class Albums {
 		}
 		$modRewrite = '';
 		if(USE_MOD_REWRITE == FALSE) $modRewrite = '?';
-		return URL_PUBLIC . $modRewrite . $settings['route'] . '/' . $pictureId .'.' . $size . '.'.$image[0]['extension'].'';
+		$route = $settings['route'];
+		if($settings['useStructure'] == 'both' || $settings['useStructure'] == 'yes') {
+			$category = self::getImageCategoryFromAlbum($image[0]['album']);
+			$album = self::getImageAlbumSlug($image[0]['album']);
+			$route = $route . '/' . $category['slug'] . '/' . $album['slug'];
+		}
+		return URL_PUBLIC . $modRewrite . $route . '/' . $pictureId .'.' . $size . '.'.$image[0]['extension'].'';
+	}
+
+	public function getImageAlbumSlug($albumID) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::ALBUMS." WHERE id='$albumID'";
+		$album = self::executeSql($sql);
+		return $album[0];
+	}
+
+	public function getImageCategoryFromAlbum($albumID) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::ALBUMS." WHERE id='$albumID'";
+		$album = self::executeSql($sql);
+		$categoryID = $album[0]['category'];
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::CATEGORIES." WHERE id='$categoryID'";
+		$category = self::executeSql($sql);
+		return $category[0];
 	}
 
 	public function deleteAlbum($id) {
@@ -259,20 +298,21 @@ class Albums {
 	public function addAlbumHandler($_POST) {
 		if($_POST['name'] == '') echo 'You must give the album a name<br />';
 		if($_POST['name'] == '') exit();
-		self::insertAlbum($_POST['name'], $_POST['description'], $_POST['credits'], $_POST['category']);
+		self::insertAlbum($_POST['name'], $_POST['description'], $_POST['credits'], $_POST['category'], $_POST['slug']);
 		global $__CMS_CONN__;
 		$this->db = $__CMS_CONN__;
 		$insertID = $this->db->lastInsertId();
 		echo 'Your album has been added. You can add another album, or <a href="'.get_url('albums/add/'.$insertID.'').'">add images to your album</a>.';
 	}
 
-	private function insertAlbum($name, $description=NULL, $credits=NULL, $category=NULL) {
+	private function insertAlbum($name, $description=NULL, $credits=NULL, $category=NULL, $slug=NULL) {
 		$now = time();
 		if($category == NULL) $category = '1';
 		$sql = "INSERT INTO ".TABLE_PREFIX.self::ALBUMS."
 				VALUES(
 					'',
 					'".$name."',
+					'".$slug."',
 					'".$description."',
 					'".$credits."',
 					'$now',

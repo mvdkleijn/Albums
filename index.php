@@ -20,6 +20,8 @@ include('classes/Serve.php');
 $settings = Plugin::getAllSettings('albums');
 if(count($settings) != 0) { $serveRoute = $settings['route']; } else { $serveRoute = 'default-defunct-route'; }
 
+if($settings['useStructure'] == 'both' || $settings['useStructure'] == 'yes') $serveRoute = $serveRoute . '/:any/:any';
+
 if(defined('CMS_BACKEND')) {
 	Dispatcher::addRoute(array(
 		'/'.$serveRoute.'/:any'					=>	'/plugin/albums/serve/$1',
@@ -60,7 +62,18 @@ if(defined('CMS_BACKEND')) {
 		'/albums/changeView/:any'				=>	'/plugin/albums/changeView/$1'
 	));
 } else {
-	Dispatcher::addRoute(array(
-		'/'.$serveRoute.'/:any'					=>	'/plugin/albums/serve/$1',
-	));
+	if($settings['useStructure'] == 'both') {
+		Dispatcher::addRoute(array(
+			'/'.$settings['route'].'/:any'		=>	'/plugin/albums/serve/$1',
+			'/'.$serveRoute.'/:any'				=>	'/plugin/albums/serve/$1/$2/$3',
+		));	
+	} elseif($settings['useStructure'] == 'yes') {
+		Dispatcher::addRoute(array(
+			'/'.$serveRoute.'/:any'				=>	'/plugin/albums/serve/$1/$2/$3',
+		));	
+	} elseif($settings['useStructure'] == 'no') {
+		Dispatcher::addRoute(array(
+			'/'.$settings['route'].'/:any'				=>	'/plugin/albums/serve/$1',
+		));	
+	}
 }

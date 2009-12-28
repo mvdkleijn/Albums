@@ -6,10 +6,9 @@
 	}
 	function completeCallback(response) {
 		document.getElementById('result').innerHTML = response;
-		setTimeout("clearMessage()", 2000);
+		setTimeout("clearMessage()", 500);
 	}
 	function clearMessage() {
-		document.getElementById('result').innerHTML = '';
 		document.getElementById('form').reset();
 	}
 </script>
@@ -24,6 +23,11 @@
 			<td class="label">Name</td>
 			<td class="field"><input class="textbox" type="text" name="name" /></td>
 			<td class="help">What should we call this album?</td>
+		</tr>
+		<tr>
+			<td class="label">Slug</td>
+			<td class="field"><input class="textbox" type="text" name="slug" /></td>
+			<td class="help">This will be used if you use an advanced routing configuration</td>
 		</tr>
 		<tr>
 			<td class="label">Description</td>
