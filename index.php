@@ -18,9 +18,12 @@ include('classes/Albums.php');
 include('classes/Serve.php');
 
 $settings = Plugin::getAllSettings('albums');
-if(count($settings) != 0) { $serveRoute = $settings['route']; } else { $serveRoute = 'default-defunct-route'; }
-
-if($settings['useStructure'] == 'both' || $settings['useStructure'] == 'yes') $serveRoute = $serveRoute . '/:any/:any';
+if(count($settings) != 0) {
+	$serveRoute = $settings['route'];
+	if($settings['useStructure'] == 'both' || $settings['useStructure'] == 'yes') $serveRoute = $serveRoute . '/:any/:any';
+} else {
+	$serveRoute = 'default-defunct-route';
+}
 
 if(defined('CMS_BACKEND')) {
 	Dispatcher::addRoute(array(
