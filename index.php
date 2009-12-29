@@ -44,6 +44,10 @@ if(defined('CMS_BACKEND')) {
 		'/albums/categories/:num/'				=>	'/plugin/albums/viewCategory/$1',
 		'/albums/editCategory'					=>	'/plugin/albums/editCategory',
 		'/albums/editCategory/'					=>	'/plugin/albums/editCategory',
+		'/albums/delete-category/:num'			=>	'/plugin/albums/deleteCategory/$1',
+		'/albums/delete-category/:num/'			=>	'/plugin/albums/deleteCategory/$1',
+		'/albums/confirm-category-delete/:num'	=>	'/plugin/albums/deleteCategoryConfirm/$1',
+		'/albums/confirm-category-delete/:num/'	=>	'/plugin/albums/deleteCategoryConfirm/$1',
 		'/albums/view/:num'						=>	'/plugin/albums/viewAlbum/$1',
 		'/albums/view/:num/'					=>	'/plugin/albums/viewAlbum/$1',
 		'/albums/image/:num'					=>	'/plugin/albums/viewImage/$1',
@@ -70,6 +74,7 @@ if(defined('CMS_BACKEND')) {
 		'/albums/addCategoryHandler'			=>	'/plugin/albums/addCategoryHandler',
 		'/albums/makeCover/:num'				=>	'/plugin/albums/makeCoverImage/$1',
 		'/albums/changeAlbumPublishStatus'		=>	'/plugin/albums/changeAlbumPublishStatus',
+		'/albums/changeAlbumCategory'			=>	'/plugin/albums/changeAlbumCategory',
 		'/albums/changeView/:any'				=>	'/plugin/albums/changeView/$1'
 	));
 } else {

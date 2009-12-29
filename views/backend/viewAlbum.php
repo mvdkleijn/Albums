@@ -1,6 +1,6 @@
 <script type="text/javascript">
 	function dropdown(sel) {
-		c = confirm('You are about to change this albums publish status.\n\nAre you sure you want to do this?');
+		c = confirm('You are about to make a change to this album.\n\nAre you sure you want to do this?');
 		if(c) { sel.form.submit(); } else { sel.selectedIndex = 0; }
 	} 
 </script>
@@ -27,6 +27,17 @@
 		<select name="published" onchange="return dropdown(this)">
 			<option value="yes"<?php if($album[0]['published'] == 'yes') { echo ' selected="selected"'; } ?>>published</option>
 			<option value="no"<?php if($album[0]['published'] == 'no') { echo ' selected="selected"'; } ?>>not published</option>
+		</select><br />
+	</form>
+	<form action="<?php echo get_url('albums/changeAlbumCategory'); ?>" method="post">
+		<input type="hidden" name="album" value="<?php echo $album[0]['id']; ?>" />
+		<small>in the category </small>
+		<select name="category" onchange="return dropdown(this)">
+<?php
+	foreach($categories as $category) {
+?>
+			<option<?php if($category['id'] == $album[0]['category']) echo ' selected="selected"'; ?> value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
+<?php } ?>
 		</select>
 	</form>
 </div>

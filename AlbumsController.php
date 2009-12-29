@@ -100,8 +100,18 @@ class AlbumsController extends PluginController {
 		redirect(get_url('albums/categories/'.$_POST['id'].''));
 	}
 
+	public function deleteCategory($id) {
+		$this->display('../plugins/albums/views/backend/deleteCategory', array('category' => Albums::getCategory($id)));
+	}
+
+	public function deleteCategoryConfirm($id) {
+		Albums::deleteCategory($id);
+		Flash::set('success', __('This category has been deleted. <strong>ANY ALBUMS IN THIS CATEGORY HAVE BEEN MOVED INTO THE DEFAULT CATEGORY</strong>'));
+		redirect(get_url('albums/categories'));
+	}
+
 	public function viewAlbum($id) {
-		$this->display('../plugins/albums/views/backend/viewAlbum', array('album' => Albums::getAlbum($id), 'images' => Albums::getImagesFromAlbum($id)));
+		$this->display('../plugins/albums/views/backend/viewAlbum', array('album' => Albums::getAlbum($id), 'images' => Albums::getImagesFromAlbum($id), 'categories' => Albums::getCategories()));
 	}
 
 	public function viewImage($id) {
@@ -148,6 +158,12 @@ class AlbumsController extends PluginController {
 		Albums::updateImageAlbum($_POST);
 		Flash::set('success', __('This image has been moved'));
 		redirect(get_url('albums/image/'.$_POST['image'].''));
+	}
+
+	public function changeAlbumCategory() {
+		Albums::updateAlbumCategory($_POST);
+		Flash::set('success', __('This album has been moved into a new category'));
+		redirect(get_url('albums/view/'.$_POST['album'].''));
 	}
 
 	public function deleteAlbum($id) {

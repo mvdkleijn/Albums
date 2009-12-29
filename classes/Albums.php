@@ -74,6 +74,19 @@ class Albums {
 		return self::executeSql($sql);
 	}
 
+	public function deleteCategory($id) {
+		$sql = "DELETE FROM ".TABLE_PREFIX.self::CATEGORIES." WHERE id='".$id."'";
+		self::executeSql($sql);
+		self::removeAlbumsFromCategory($id);
+	}
+
+	public function removeAlbumsFromCategory($id) {
+		$sql = "UPDATE ".TABLE_PREFIX.self::ALBUMS." SET
+					category='1'
+				WHERE category='$id'";
+		self::executeSql($sql);
+	}
+
 	public function getImagesFromAlbum($albumId) {
 		$order = self::getOrder($albumId);
 		if(count($order) != 0) {
@@ -368,6 +381,14 @@ class Albums {
 		$sql = "UPDATE ".TABLE_PREFIX.self::ALBUMS." SET
 					coverImage='".$imageID."'
 				WHERE id='".$albumID."'
+		";
+		self::executeSql($sql);
+	}
+
+	public function updateAlbumCategory($_POST) {
+		$sql = "UPDATE ".TABLE_PREFIX.self::ALBUMS." SET
+					category='".filter_var($_POST['category'], FILTER_SANITIZE_STRING)."'
+				WHERE id='".filter_var($_POST['album'], FILTER_SANITIZE_STRING)."'
 		";
 		self::executeSql($sql);
 	}
