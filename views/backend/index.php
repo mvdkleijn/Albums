@@ -1,3 +1,46 @@
-<h1>Albums Plugin</h1>
-<p><a href="<?php echo get_url('albums/albums'); ?>">View albums</a></p>
-<p><a href="<?php echo get_url('albums/categories'); ?>">View categories</a></p>
+<h1>Albums</h1>
+
+<?php
+
+	$settings = Plugin::getAllSettings('albums');
+
+	if(count($albums) == 0) {
+		$gdInfo = gd_info();
+		if($gdInfo['GD Version'] == '') { ?>
+			<div id="error">
+				<p>There is a problem - you don't appear to have GD Library installed. Without it, this plugin will not function properly!</p>
+				<p>Please contact your server administrator for more information</p>
+			</div>
+			<div style="clear:both;"></div>
+<?php	} ?>
+<p>Welcome to the Albums plugin!</p>
+<p>It looks like you haven't set up any albums yet, so why not <a href="<?php echo get_url('albums/addAlbum'); ?>">create one now</a>?</p>
+<p>Once you've set up your first album, you can add some images to it...</p>
+<?php
+	}
+?>
+
+<?php	foreach($categories as $category) {
+?>
+<div class="category">
+	<p><a href="<?php echo get_url('albums/categories/'.$category['id'].''); ?>"><?php echo $category['name']; ?></a></p>
+<?php	foreach($albums as $album) {
+			if($category['id'] == $album['category']) {
+?>
+	<div class="album">
+		<p><a href="<?php echo get_url('albums/view/'.$album['id'].''); ?>"><?php echo $album['name']; ?></a></p>
+<?php	foreach($images as $image) {
+			if($image['album'] == $album['id']) {
+?>
+		<div class="image">
+			<a href="<?php echo get_url('albums/image/'.$image['id'].''); ?>"><img src="<?php echo Albums::urlToImage($image['id'], '100'); ?>" /></a>
+		</div>
+<?php		}
+		}	?>
+	</div>
+<?php		}
+		}
+?>
+<div style="clear:both;"></div>
+</div>
+<?php	}	?>

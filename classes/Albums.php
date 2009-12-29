@@ -172,6 +172,11 @@ class Albums {
 		return self::executeSql($sql);
 	}
 
+	public function getImages() {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::IMAGES."";
+		return self::executeSql($sql);
+	}
+
 	public function getImageByName($name) {
 		$sql = "SELECT * FROM ".TABLE_PREFIX.self::IMAGES."";
 		$sql .= " WHERE name='$name'";
@@ -291,6 +296,27 @@ class Albums {
 			self::updateAlbumStamp($_POST['album']);
 			echo 'This image has been uploaded. You can add another one now, or <a href="'.get_url('albums/view/'.$_POST['album'].'').'">go back to the album</a>';
 		}
+	}
+
+	public function addCategoryHandler($_POST) {
+		if($_POST['name'] == '') echo 'You must give the category a name<br />';
+		if($_POST['name'] == '') exit();
+		self::insertCategory($_POST['name'], $_POST['description'], $_POST['slug']);
+		global $__CMS_CONN__;
+		$this->db = $__CMS_CONN__;
+		$insertID = $this->db->lastInsertId();
+		echo 'Your category has been added.';
+	}
+
+	private function insertCategory($name, $description=NULL, $slug=NULL) {
+		$sql = "INSERT INTO ".TABLE_PREFIX.self::CATEGORIES."
+				VALUES(
+					'',
+					'".$name."',
+					'".$slug."',
+					'".$description."'
+				)";
+		self::executeSql($sql);
 	}
 
 	public function addAlbumHandler($_POST) {

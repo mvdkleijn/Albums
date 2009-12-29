@@ -4,20 +4,6 @@
 
 	$settings = Plugin::getAllSettings('albums');
 
-	if(count($albums) == 0) {
-		$gdInfo = gd_info();
-		if($gdInfo['GD Version'] == '') { ?>
-			<div id="error">
-				<p>There is a problem - you don't appear to have GD Library installed. Without it, this plugin will not function properly!</p>
-				<p>Please contact your server administrator for more information</p>
-			</div>
-			<div style="clear:both;"></div>
-<?php	} ?>
-<p>Welcome to the Albums plugin!</p>
-<p>It looks like you haven't set up any albums yet, so why not <a href="<?php echo get_url('albums/addAlbum'); ?>">create one now</a>?</p>
-<p>Once you've set up your first album, you can add some images to it...</p>
-<?php
-	}
 ?>
 
 <div id="viewOptions">

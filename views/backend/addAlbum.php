@@ -21,13 +21,13 @@
 	<table class="fieldset">
 		<tr>
 			<td class="label">Name</td>
-			<td class="field"><input class="textbox" type="text" name="name" /></td>
+			<td class="field"><input class="textbox" type="text" name="name" id="nametoslug" /></td>
 			<td class="help">What should we call this album?</td>
 		</tr>
 		<tr>
 			<td class="label">Slug</td>
-			<td class="field"><input class="textbox" type="text" name="slug" /></td>
-			<td class="help">This will be used if you use an advanced routing configuration</td>
+			<td class="field"><input class="textbox" type="text" name="slug" id="slug" /></td>
+			<td class="help">This will be used in an advanced routing configuration</td>
 		</tr>
 		<tr>
 			<td class="label">Description</td>

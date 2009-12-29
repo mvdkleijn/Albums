@@ -7,7 +7,7 @@
 
 <h1>Viewing Image</h1>
 
-<h2><span class="editRegion" id="name"><?php echo $image[0]['name']; ?></span></h2>
+<h2>Name: <span class="editRegion" id="name"><?php echo $image[0]['name']; ?></span></h2>
 
 <p>&laquo; <a href="<?php echo get_url('albums/view/'.$album[0]['id'].''); ?>">Back to <?php echo $album[0]['name']; ?> Album</a></p>
 

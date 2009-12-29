@@ -1,26 +1,35 @@
 <script type="text/javascript">
-	function dropdown(sel){ 
+	function dropdown(sel) {
 		c = confirm('You are about to change this albums publish status.\n\nAre you sure you want to do this?');
-		if(c) { sel.form.submit(); } else { sel.selectedIndex = 0; } 
+		if(c) { sel.form.submit(); } else { sel.selectedIndex = 0; }
 	} 
 </script>
 
-<h1>Viewing Album: <span class="editRegion" id="name"><?php echo $album[0]['name']; ?></span></h1>
+<h1>Viewing Album</h1>
 
-<p>&laquo; <a href="<?php echo get_url('albums'); ?>">Back to albums</a></p>
+<div class="metaData">
+	<p>&laquo; <a href="<?php echo get_url('albums/albums'); ?>">Back to albums</a></p>
+</div>
 
-<p>+ <a href="<?php echo get_url('albums/add/'.$album[0]['id'].''); ?>">Add images to this album</a></p>
+<div class="metaData">
+	<p>+ <a href="<?php echo get_url('albums/add/'.$album[0]['id'].''); ?>">Add images to this album</a></p>
+</div>
 
-<form action="<?php echo get_url('albums/changeAlbumPublishStatus'); ?>" method="post">
-	<input type="hidden" name="album" value="<?php echo $album[0]['id']; ?>" />
-	This album is 
-	<select name="published" onchange="return dropdown(this)">
-		<option value="yes"<?php if($album[0]['published'] == 'yes') { echo ' selected="selected"'; } ?>>published</option>
-		<option value="no"<?php if($album[0]['published'] == 'no') { echo ' selected="selected"'; } ?>>not published</option>
-	</select>
-</form>
+<div class="clear"></div>
 
-<p>&nbsp;</p>
+<div class="metaData">
+	<p>Name: <span class="editRegion" id="name"><?php echo $album[0]['name']; ?></span></p>
+	<p>Slug: <span class="editRegion" id="slug"><?php echo $album[0]['slug']; ?></span></p>
+	<p>&nbsp;</p>
+	<form action="<?php echo get_url('albums/changeAlbumPublishStatus'); ?>" method="post">
+		<input type="hidden" name="album" value="<?php echo $album[0]['id']; ?>" />
+		This album is 
+		<select name="published" onchange="return dropdown(this)">
+			<option value="yes"<?php if($album[0]['published'] == 'yes') { echo ' selected="selected"'; } ?>>published</option>
+			<option value="no"<?php if($album[0]['published'] == 'no') { echo ' selected="selected"'; } ?>>not published</option>
+		</select>
+	</form>
+</div>
 
 <div class="metaData">
 	<p>Album Description:</p>
@@ -29,9 +38,7 @@
 	<?php	} else {	?>
 	<p><span class="editRegion" id="description"><?php echo $album[0]['description']; ?></span></p>
 	<?php	} ?>
-</div>
-
-<div class="metaData">
+	<p>&nbsp;</p>
 	<p>Album Credit:</p>
 	<?php	if($album[0]['credits'] == '') { ?>
 	<p><span class="editRegion" id="credits">add an image credit</span></p>
@@ -69,7 +76,11 @@
 </div>
 <?php } ?>
 
-<p>+ <a href="<?php echo get_url('albums/add/'.$album[0]['id'].''); ?>">Add images to this album</a></p>
+<div class="metaData">
+	<p>+ <a href="<?php echo get_url('albums/add/'.$album[0]['id'].''); ?>">Add images to this album</a></p>
+</div>
+
+<div class="clear"></div>
 
 <script type="text/javascript">
 
@@ -81,7 +92,6 @@
 				newOrder = newOrder.replace("images[]=","");
 				newOrder = newOrder.replace("&",",");
 			}
-//		  	var url = 'updateOrder/<?php echo $album[0]['id']; ?>o'+newOrder;
 			var page = window.location.href;
 			var pageArray = page.split('/');
 			var arrayLength = pageArray.length;

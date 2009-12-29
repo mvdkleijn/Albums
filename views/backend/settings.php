@@ -8,7 +8,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td class="label" rowspan="2">Image Route</td>
+			<td class="label">Image Route</td>
 			<td class="field"><small><?php echo URL_PUBLIC; ?><input name="route" value="<?php echo $settings['route']; ?>" />/imageid.jpg</small></td>
 			<td class="help">The path on the front end to display images from. Think of this as a virtual folder of images.</td>
 		</tr>

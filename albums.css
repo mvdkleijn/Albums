@@ -262,11 +262,28 @@ table.fieldset td.field {
   padding-top: 10px;
 }
 
-/*
-#imageInfo h2 {
-	margin-top: 0px;
+div.category {
+	margin: 2.5%;
+	width: 90%;
+	padding: 2.5%;
+	border: 1px solid #f1f1f1;
+	background-color: #f9f9f9;
 }
 
-#imageInfo p {
-	margin-top: 5px;
-}*/
+div.album {
+	width: 90%;
+	margin: 2.5%;
+	padding: 2.5%;
+	border: 1px solid #f1f1f1;
+	background-color: #f4f4f4;
+	float: right;
+}
+
+div.image {
+	padding: 2.5%;
+	float: left;
+}
+
+#imageInfo p, .album-info p {
+	font-size: small;
+}

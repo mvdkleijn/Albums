@@ -60,6 +60,8 @@ if(defined('CMS_BACKEND')) {
 		'/albums/changeAlbum'					=>	'/plugin/albums/changeAlbum',
 		'/albums/addAlbum'						=>	'/plugin/albums/addAlbum',
 		'/albums/addAlbumHandler'				=>	'/plugin/albums/addAlbumHandler',
+		'/albums/addCategory'					=>	'/plugin/albums/addCategory',
+		'/albums/addCategoryHandler'			=>	'/plugin/albums/addCategoryHandler',
 		'/albums/makeCover/:num'				=>	'/plugin/albums/makeCoverImage/$1',
 		'/albums/changeAlbumPublishStatus'		=>	'/plugin/albums/changeAlbumPublishStatus',
 		'/albums/changeView/:any'				=>	'/plugin/albums/changeView/$1'

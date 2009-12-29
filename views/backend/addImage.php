@@ -40,42 +40,60 @@
 <form id="form" enctype="multipart/form-data" action="<?php echo get_url('albums/add-image/'.$album[0]['id'].''); ?>" method="post" onsubmit="return AIM.submit(this, {'onStart' : startCallback, 'onComplete' : completeCallback})">
 	<div class="label">&nbsp;</div>
 	<div class="result-holder"><p id="result"></p></div>
+
+
 	<div class="form-clear"></div>
-	<div class="label"><label>Name:</label></div>
-	<div class="field"><input class="textbox" type="text" name="name" /></div>
-	<div class="form-clear"></div>
-	<div class="label"><label>File:</label></div>
-	<div class="field"><input type="file" name="image" /></div>
-	<div class="form-clear"></div>
-	<div class="label"><label>Make Cover Image for Album?</label></div>
-	<div class="field">
-		<select name="makeCoverImage">
-			<option value="no" selected="selected">No</option>
-			<option value="yes">Yes</option>
-		</select>
-	</div>
-	<div class="form-clear"></div>
-	<div class="label"><label>Description:</label></div>
-	<div class="field"><textarea name="description" style="height:100px;"></textarea></div>
-	<div class="form-clear"></div>
-	<div class="label"><label>Image Credit:</label></div>
-	<div class="field"><textarea name="credits" style="height:50px;"></textarea></div>
-	<div class="form-clear"></div>
-	<div class="label"><label>Album:</label></div>
-	<div class="field">
-		<select name="album">
-			<?php foreach ($albums as $albumList) {
-					$selected = '';
-					if($albumList['id'] == $id) {
-						$selected = ' selected="selected"';
-					}
-			?>
-			<option value="<?php echo $albumList['id']; ?>"<?php echo $selected; ?>><?php echo $albumList['name']; ?></option>
-			<?php } ?>
-		</select>
-	</div>
-	<div class="form-clear"></div>
-	<div class="label">&nbsp;</div>
-	<div class="field"><input type="submit" value="Add this Image" /></div>
+
+	<table class="fieldset">
+		<tr>
+			<td class="label">Name</td>
+			<td class="field"><input class="textbox" type="text" name="name" /></td>
+			<td class="help">Add a name for this image</td>
+		</tr>
+		<tr>
+			<td class="label">File</td>
+			<td class="field" colspan="2"><input type="file" name="image" /></td>
+		</tr>
+		<tr>
+			<td class="label">Cover Image</td>
+			<td class="field">
+				<select name="makeCoverImage">
+					<option value="no">No</option>
+					<option value="yes" selected="selected">Yes</option>
+				</select>
+			</td>
+			<td class="help">Each Album needs a Cover Image.</td>
+		</tr>
+		<tr>
+			<td class="label">Description</td>
+			<td class="field"><textarea name="description" style="height:100px;"></textarea></td>
+			<td class="help">Add a description for this image</td>
+		</tr>
+		<tr>
+			<td class="label">Image Credit</td>
+			<td class="field"><textarea name="credits" style="height:50px;"></textarea></td>
+			<td class="help">If this image needs a credit, add it here</td>
+		</tr>
+		<tr>
+			<td class="label">Album</td>
+			<td class="field">
+				<select name="album">
+					<?php foreach ($albums as $albumList) {
+							$selected = '';
+							if($albumList['id'] == $id) {
+								$selected = ' selected="selected"';
+							}
+					?>
+					<option value="<?php echo $albumList['id']; ?>"<?php echo $selected; ?>><?php echo $albumList['name']; ?></option>
+					<?php } ?>
+				</select>
+			</td>
+			<td class="help">Which album should we put this in</td>
+		</tr>
+		<tr>
+			<td class="label"></td>
+			<td class="field" colspan="2"><input type="submit" value="Add this Image" /></td>
+		</tr>
+	</table>
 </form>
 <?php } ?>

@@ -8,7 +8,7 @@ class AlbumsController extends PluginController {
 	}
 
 	public function index() {
-		$this->display('../plugins/albums/views/backend/index', array('albums' => Albums::getAlbumList()));
+		$this->display('../plugins/albums/views/backend/index', array('categories' => Albums::getCategories(), 'albums' => Albums::getAlbumList(), 'images' => Albums::getImages()));
 	}
 
 	public function albums() {
@@ -160,6 +160,14 @@ class AlbumsController extends PluginController {
 		Albums::changeAlbumPublishStatus($_POST['album'], $_POST['published']);
 		Flash::set('success', __('This album has been updated'));
 		redirect(get_url('albums/view/'.$_POST['album'].''));
+	}
+
+	public function addCategoryHandler() {
+		Albums::addCategoryHandler($_POST);
+	}
+
+	public function addCategory($id=NULL) {
+		$this->display('../plugins/albums/views/backend/addCategory');
 	}
 
 }

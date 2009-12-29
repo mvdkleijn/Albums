@@ -1,3 +1,19 @@
+// This is the slug autogenerator, adapted from wolf.js (around line 577)
+
+document.observe('dom:loaded', function() {
+	when('nametoslug', function(nametoslug) {
+		var slug = $('slug'),
+		oldTitle = nametoslug.value;
+		new Form.Element.Observer(nametoslug, 0.15, function() {
+			if (oldTitle.toSlug() == slug.value) slug.value = nametoslug.value.toSlug();
+			oldTitle = nametoslug.value;
+		});
+	});
+});
+
+
+
+
 // AJAX IFRAME METHOD (AIM) - http://www.webtoolkit.info/ajax-file-upload.html
 // This does the image uploading in the background
 
@@ -52,6 +68,8 @@ AIM = {
 }
 
 
+
+
 // Adapted from 24 Ways: http://24ways.org/2005/edit-in-place-with-ajax
 // This does the inline editing of content
 
@@ -59,6 +77,7 @@ Event.observe(window, 'load', init, false);
 
 function init(){
 	makeEditable('name');
+	makeEditable('slug');
 	makeEditable('description');
 	makeEditable('credits');
 	makeEditable('tags');
