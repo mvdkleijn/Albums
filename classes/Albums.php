@@ -322,7 +322,7 @@ class Albums {
 	public function addAlbumHandler($_POST) {
 		if($_POST['name'] == '') echo 'You must give the album a name<br />';
 		if($_POST['name'] == '') exit();
-		self::insertAlbum($_POST['name'], $_POST['description'], $_POST['credits'], $_POST['category'], $_POST['slug']);
+		self::insertAlbum(filter_var($_POST['name'], FILTER_SANITIZE_STRING), filter_var($_POST['description'], FILTER_SANITIZE_STRING), filter_var($_POST['credits'], FILTER_SANITIZE_STRING), filter_var($_POST['category'], FILTER_SANITIZE_STRING), filter_var($_POST['slug'], FILTER_SANITIZE_STRING));
 		global $__CMS_CONN__;
 		$this->db = $__CMS_CONN__;
 		$insertID = $this->db->lastInsertId();
