@@ -57,5 +57,4 @@ NOTES
 		Add ability for administrators to export an album to a zip and download.
 		Batch import via zip and multiple uploads
 		Flickr / Facebook synchronisation
-		Categorise Albums
 		Add Display	for logs

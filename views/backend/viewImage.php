@@ -121,7 +121,7 @@
 				</select> album
 			</form>
 	</p>
-	<p>&times; <a href="<?php echo get_url('albums/delete-image/'.$image[0]['id'].''); ?>">Delete this image</a></p>
+	<p><img src="<?php echo URL_PUBLIC . CORE_FOLDER .'/plugins/albums/images/delete.png'; ?>" alt="+" align="top" height="16px" /> <a href="<?php echo get_url('albums/delete-image/'.$image[0]['id'].''); ?>">Delete this image</a></p>
 </div>
 
 <div class="clear"></div>
