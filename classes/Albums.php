@@ -206,7 +206,7 @@ class Albums {
 		return $count;
 	}
 
-	public function urlToImage($pictureId, $size) {
+	public function urlToImage($pictureId, $size=NULL) {
 		$settings = Plugin::getAllSettings('albums');
 		$image = self::getImage($pictureId);
 		if($settings['format'] == 'numeric') {
@@ -222,7 +222,8 @@ class Albums {
 		$category = self::getImageCategoryFromAlbum($image[0]['album']);
 		$album = self::getImageAlbumSlug($image[0]['album']);
 		$route = $route . '/' . $category['slug'] . '/' . $album['slug'];
-		return URL_PUBLIC . $modRewrite . $route . '/' . $pictureId .'.' . $size . '.'.$image[0]['extension'].'';
+		if($size != NULL) { return URL_PUBLIC . $modRewrite . $route . '/' . $pictureId .'.' . $size . '.'.$image[0]['extension'].''; }
+		else { return URL_PUBLIC . $modRewrite . $route . '/' . $pictureId .'.'.$image[0]['extension'].''; }
 	}
 
 	public function getImageAlbumSlug($albumID) {

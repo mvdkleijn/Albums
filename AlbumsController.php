@@ -20,6 +20,10 @@ class AlbumsController extends PluginController {
 		$this->display('../plugins/albums/views/backend/categories', array('albums' => Albums::getAlbumList()));
 	}
 
+	public function images() {
+		$this->display('../plugins/albums/views/backend/images', array('images' => Albums::getImages()));
+	}
+
 	public function settings() {
 		$this->display('../plugins/albums/views/backend/settings', array('settings' => Plugin::getAllSettings('albums')));
 	}

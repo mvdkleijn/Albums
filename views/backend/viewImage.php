@@ -23,7 +23,7 @@
 		<small>
 			&harr; <?php echo $imageInfo[0]; ?>px<br />
 			&uarr; <?php echo $imageInfo[1]; ?>px<br />
-			<a href="<?php echo URL_PUBLIC . $settings['route'] . '/' . $image[0]['id'].'.'.$image[0]['extension']; ?>" target="_blank">View full size image in a new window</a>
+			<a href="<?php echo Albums::urlToImage($image[0]['id']); ?>" target="_blank">View full size image in a new window</a>
 		</small>
 	</div>
 	<div class="clear"></div>

@@ -287,3 +287,14 @@ div.image {
 #imageInfo p, .album-info p {
 	font-size: small;
 }
+
+ul.allImages li {
+	display: inline-block;
+	padding: 10px;
+	margin: 10px;
+	border: 1px solid #f1f1f1;
+}
+
+ul.allImages li:hover {
+	border: 1px solid #000;
+}

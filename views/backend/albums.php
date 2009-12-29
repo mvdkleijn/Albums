@@ -6,6 +6,10 @@
 
 ?>
 
+<div class="metaData">
+	<p>&laquo; <a href="<?php echo get_url('albums'); ?>">Back to overview</a></p>
+</div>
+
 <div id="viewOptions">
 	<a href="<?php echo get_url('albums/changeView/detail'); ?>"><img align="middle" src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/info.png'; ?>" /> view in detail</a><br />
 	<a href="<?php echo get_url('albums/changeView/grid'); ?>"><img align="middle" src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/grid.png'; ?>" /> view in grid</a>

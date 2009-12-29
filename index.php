@@ -36,6 +36,8 @@ if(defined('CMS_BACKEND')) {
 		'/albums/saveSettings/'					=>	'/plugin/albums/saveSettings',
 		'/albums/albums'						=>	'/plugin/albums/albums',
 		'/albums/albums/'						=>	'/plugin/albums/albums',
+		'/albums/images'						=>	'/plugin/albums/images',
+		'/albums/images/'						=>	'/plugin/albums/images',
 		'/albums/categories'					=>	'/plugin/albums/categories',
 		'/albums/categories/'					=>	'/plugin/albums/categories',
 		'/albums/view/:num'						=>	'/plugin/albums/viewAlbum/$1',
