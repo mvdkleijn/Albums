@@ -91,6 +91,10 @@
 	<p>+ <a href="<?php echo get_url('albums/add/'.$album[0]['id'].''); ?>">Add images to this album</a></p>
 </div>
 
+<div class="metaData">
+	<p><img src="<?php echo URL_PUBLIC . CORE_FOLDER .'/plugins/albums/images/delete.png'; ?>" alt="+" align="top" height="16px" /> <a href="<?php echo get_url('albums/delete-album/'.$album[0]['id'].''); ?>" title="Delete Album: <?php echo $album[0]['name']; ?>">Delete Album</a></p>
+</div>
+
 <div class="clear"></div>
 
 <script type="text/javascript">
