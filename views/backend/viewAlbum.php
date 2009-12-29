@@ -12,7 +12,7 @@
 </div>
 
 <div class="metaData">
-	<p>+ <a href="<?php echo get_url('albums/add/'.$album[0]['id'].''); ?>">Add images to this album</a></p>
+	<p><img src="<?php echo URL_PUBLIC . CORE_FOLDER .'/plugins/albums/images/add.png'; ?>" alt="+" align="top" height="16px" /> <a href="<?php echo get_url('albums/add/'.$album[0]['id'].''); ?>">Add images to this album</a></p>
 </div>
 
 <div class="clear"></div>

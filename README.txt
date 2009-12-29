@@ -50,7 +50,7 @@ albums_tags			-	This table contains tagging information for images.
 NOTES
 -----
 
-	The table names mentioned above can be changed in ServeModel.php and AlbumsModel.php if they conflict with anything.
+	The table names mentioned above can be changed in ServeModel.php and AlbumsModel.php if they conflict with existing tables in your database.
 
 	TO DO LIST (In no particular order)
 
@@ -58,4 +58,4 @@ NOTES
 		Batch import via zip and multiple uploads
 		Flickr / Facebook synchronisation
 		Categorise Albums
-		View all Images
+		Add Display	for logs

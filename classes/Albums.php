@@ -64,6 +64,16 @@ class Albums {
 		return self::executeSql($sql);
 	}
 
+	public function editCategory($_POST) {
+		$sql = "UPDATE ".TABLE_PREFIX.self::CATEGORIES." SET
+					name='".filter_var($_POST['name'], FILTER_SANITIZE_STRING)."',
+					slug='".filter_var($_POST['slug'], FILTER_SANITIZE_STRING)."',
+					description='".filter_var($_POST['description'], FILTER_SANITIZE_STRING)."'				
+				";
+		$sql .= " WHERE id='".filter_var($_POST['id'], FILTER_SANITIZE_STRING)."'";
+		return self::executeSql($sql);
+	}
+
 	public function getImagesFromAlbum($albumId) {
 		$order = self::getOrder($albumId);
 		if(count($order) != 0) {

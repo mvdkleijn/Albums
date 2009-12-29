@@ -1,5 +1,7 @@
 <h1>Images</h1>
 
+<p>These are all your images in all albums and all categories:</p>
+
 <ul class="allImages">
 <?php
 	foreach($images as $image) {

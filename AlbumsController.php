@@ -17,7 +17,7 @@ class AlbumsController extends PluginController {
 	}
 
 	public function categories() {
-		$this->display('../plugins/albums/views/backend/categories', array('albums' => Albums::getAlbumList()));
+		$this->display('../plugins/albums/views/backend/categories', array('categories' => Albums::getCategories()));
 	}
 
 	public function images() {
@@ -88,6 +88,16 @@ class AlbumsController extends PluginController {
 				return FALSE;
 			}
 		}
+	}
+
+	public function viewCategory($id) {
+		$this->display('../plugins/albums/views/backend/viewCategory', array('category' => Albums::getCategory($id)));
+	}
+
+	public function editCategory() {
+		Albums::editCategory($_POST);
+		Flash::set('success', __('This category has been updated'));
+		redirect(get_url('albums/categories/'.$_POST['id'].''));
 	}
 
 	public function viewAlbum($id) {

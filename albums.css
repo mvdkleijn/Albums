@@ -262,12 +262,25 @@ table.fieldset td.field {
   padding-top: 10px;
 }
 
+div.category-list {
+	margin: 2.5%;
+	width: 22%;
+	float: left;
+	padding: 2.5%;
+	border: 1px solid #f1f1f1;
+	background-color: #f9f9f9;
+}
+
 div.category {
 	margin: 2.5%;
 	width: 90%;
 	padding: 2.5%;
 	border: 1px solid #f1f1f1;
 	background-color: #f9f9f9;
+}
+
+div.category:hover {
+	border: 1px solid #000;
 }
 
 div.album {
@@ -279,9 +292,19 @@ div.album {
 	float: right;
 }
 
+div.album:hover {
+	border: 1px solid #000;
+}
+
 div.image {
-	padding: 2.5%;
+	padding: 1.5%;
+	margin: 1%;
 	float: left;
+	border: 1px solid #FFF;
+}
+
+div.image:hover {
+	border: 1px solid #000;
 }
 
 #imageInfo p, .album-info p {
