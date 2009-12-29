@@ -23,7 +23,7 @@
 	<p>&nbsp;</p>
 	<form action="<?php echo get_url('albums/changeAlbumPublishStatus'); ?>" method="post">
 		<input type="hidden" name="album" value="<?php echo $album[0]['id']; ?>" />
-		This album is 
+		<small>This album is</small> 
 		<select name="published" onchange="return dropdown(this)">
 			<option value="yes"<?php if($album[0]['published'] == 'yes') { echo ' selected="selected"'; } ?>>published</option>
 			<option value="no"<?php if($album[0]['published'] == 'no') { echo ' selected="selected"'; } ?>>not published</option>
