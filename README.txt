@@ -5,6 +5,11 @@ This plugin allows website administrators to manage their digital images, which 
 Images can be retrieved individually if you know the ID of the image, or as an 'album' (a collection of images) or by category
 (a collection of albums).
 
+Icons in this plugin are a mixture from Function and Web Injection icon packs:
+
+	http://wefunction.com/2008/07/function-free-icon-set
+	http://www.tutorial9.net/resources/free-icon-pack-web-injection/
+
 
 
 REQUIREMENTS
@@ -49,8 +54,8 @@ NOTES
 
 	TO DO LIST (In no particular order)
 
-		Add a hash for each image to prevent sequence guessing [requires setting to enable/disable and salt]
 		Add ability for administrators to export an album to a zip and download.
 		Batch import via zip and multiple uploads
 		Flickr / Facebook synchronisation
 		Categorise Albums
+		View all Images
