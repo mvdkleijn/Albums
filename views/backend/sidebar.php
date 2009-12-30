@@ -11,4 +11,14 @@
 	<p class="button"><a href="<?php echo get_url('albums/addCategory'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/add.png'; ?>" align="middle" alt="Create a new Category" />Create a new Category</a></p>
 </div>
 
-<p class="button"><a href="<?php echo get_url('albums/settings'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/settings.png'; ?>" align="middle" alt="Settings" />Settings</a></p>
+<?php
+	if($settings['logging'] == 'on') {
+?>
+	<p class="button"><a href="<?php echo get_url('albums/logs'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/logs.png'; ?>" align="middle" alt="Logs" />Logs</a></p>
+<?php
+	}
+?>
+
+	<p class="button"><a href="<?php echo get_url('albums/settings'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/settings.png'; ?>" align="middle" alt="Settings" />Settings</a></p>
+
+	<p class="button"><a href="<?php echo get_url('albums/documentation'); ?>"><img src="<?php echo URL_PUBLIC . CORE_FOLDER . '/plugins/albums/images/documentation.png'; ?>" align="middle" alt="Documentation" />Documentation</a></p>

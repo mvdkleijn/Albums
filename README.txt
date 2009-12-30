@@ -1,6 +1,8 @@
 ALBUM PLUGIN
 ------------
 
+Author - Andrew Waters at band-x (andrew@band-x.org)
+
 This plugin allows website administrators to manage their digital images, which can then be displayed on the front end of the site.
 Images can be retrieved individually if you know the ID of the image, or as an 'album' (a collection of images) or by category
 (a collection of albums).
@@ -51,10 +53,3 @@ NOTES
 -----
 
 	The table names mentioned above can be changed in ServeModel.php and AlbumsModel.php if they conflict with existing tables in your database.
-
-	TO DO LIST (In no particular order)
-
-		Add ability for administrators to export an album to a zip and download.
-		Batch import via zip and multiple uploads
-		Flickr / Facebook synchronisation
-		Add Display	for logs

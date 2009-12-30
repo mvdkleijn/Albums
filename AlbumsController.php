@@ -4,7 +4,7 @@ class AlbumsController extends PluginController {
 
 	public function __construct() {
 		$this->setLayout('backend');
-		$this->assignToLayout('sidebar', new View('../../plugins/albums/views/backend/sidebar'));
+		$this->assignToLayout('sidebar', new View('../../plugins/albums/views/backend/sidebar', array('settings' => Plugin::getAllSettings('albums'))));
 	}
 
 	public function index() {
@@ -26,6 +26,14 @@ class AlbumsController extends PluginController {
 
 	public function settings() {
 		$this->display('../plugins/albums/views/backend/settings', array('settings' => Plugin::getAllSettings('albums')));
+	}
+
+	public function documentation() {
+		$this->display('../plugins/albums/views/backend/documentation', array('settings' => Plugin::getAllSettings('albums')));
+	}
+
+	public function logs() {
+		$this->display('../plugins/albums/views/backend/logs', array('settings' => Plugin::getAllSettings('albums')));
 	}
 
 	public function saveSettings() {

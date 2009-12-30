@@ -1,0 +1,3 @@
+<h1>Logs</h1>
+
+<p>When Logging is enabled, the site will capture all image impressions and some information about those impressions. This same information will be available in a server log if your environment is set up properly. Therefore, you have the option of regularly flushing the log if you just want short term statistics. This will keep your database lighter and your site quicker. For configuration information, take a look at the settings page.</p>

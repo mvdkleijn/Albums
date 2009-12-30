@@ -16,6 +16,7 @@
 <p>Welcome to the Albums plugin!</p>
 <p>It looks like you haven't set up any albums yet, so why not <a href="<?php echo get_url('albums/addAlbum'); ?>">create one now</a>?</p>
 <p>Once you've set up your first album, you can add some images to it...</p>
+<p>If you haven't done so already please <a href="<?php echo get_url('albums/documentation'); ?>">read the documentation</a> to get an idea of what this plugin can do for you.</p>
 <?php
 	}
 ?>
@@ -23,12 +24,12 @@
 <?php	foreach($categories as $category) {
 ?>
 <div class="category">
-	<p><a href="<?php echo get_url('albums/categories/'.$category['id'].''); ?>"><?php echo $category['name']; ?></a></p>
+	<p><small>Category:</small> <a href="<?php echo get_url('albums/categories/'.$category['id'].''); ?>"><?php echo $category['name']; ?></a></p>
 <?php	foreach($albums as $album) {
 			if($category['id'] == $album['category']) {
 ?>
 	<div class="album">
-		<p><a href="<?php echo get_url('albums/view/'.$album['id'].''); ?>"><?php echo $album['name']; ?></a></p>
+		<p><small>Album:</small> <a href="<?php echo get_url('albums/view/'.$album['id'].''); ?>"><?php echo $album['name']; ?></a></p>
 <?php	foreach($images as $image) {
 			if($image['album'] == $album['id']) {
 ?>

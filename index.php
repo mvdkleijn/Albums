@@ -27,9 +27,12 @@ if(count($settings) != 0) {
 
 if(defined('CMS_BACKEND')) {
 	Dispatcher::addRoute(array(
-		'/'.$serveRoute.'/:any'					=>	'/plugin/albums/serve/$1',
 		'/albums'								=>	'/plugin/albums/index',
 		'/albums/'								=>	'/plugin/albums/index',
+		'/albums/documentation'					=>	'/plugin/albums/documentation',
+		'/albums/documentation/'				=>	'/plugin/albums/documentation',
+		'/albums/logs'							=>	'/plugin/albums/logs',
+		'/albums/logs/'							=>	'/plugin/albums/logs',
 		'/albums/settings'						=>	'/plugin/albums/settings',
 		'/albums/settings/'						=>	'/plugin/albums/settings',
 		'/albums/saveSettings'					=>	'/plugin/albums/saveSettings',
@@ -75,7 +78,8 @@ if(defined('CMS_BACKEND')) {
 		'/albums/makeCover/:num'				=>	'/plugin/albums/makeCoverImage/$1',
 		'/albums/changeAlbumPublishStatus'		=>	'/plugin/albums/changeAlbumPublishStatus',
 		'/albums/changeAlbumCategory'			=>	'/plugin/albums/changeAlbumCategory',
-		'/albums/changeView/:any'				=>	'/plugin/albums/changeView/$1'
+		'/albums/changeView/:any'				=>	'/plugin/albums/changeView/$1',
+		'/'.$serveRoute.'/:any'					=>	'/plugin/albums/serve/$1'
 	));
 } else {
 	Dispatcher::addRoute(array(

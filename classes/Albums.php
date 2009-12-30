@@ -2,14 +2,14 @@
 
 class Albums {
 
-	const SETTINGS	=	"plugin_settings";
+	const SETTINGS		=	"plugin_settings";
 
-	const ALBUMS	=	"albums";
-	const IMAGES	=	"albums_images";
-	const LOGS		=	"albums_log";
-	const ORDER		=	"albums_order";
-	const TAGS		=	"albums_tags";
-	const CATEGORIES =	"albums_categories";
+	const ALBUMS		=	"albums";
+	const IMAGES		=	"albums_images";
+	const LOGS			=	"albums_log";
+	const ORDER			=	"albums_order";
+	const TAGS			=	"albums_tags";
+	const CATEGORIES	=	"albums_categories";
 
 	function executeSql($sql) {
 		global $__CMS_CONN__;
@@ -283,10 +283,12 @@ class Albums {
 		$fileInfo = getimagesize($_FILES['image']['tmp_name']);
 		$now = time();
 		$extension = strtolower(end(explode('.', $_FILES['image']['name'])));
+		$name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+		$name = self::checkImageNameIsUnique($name);
 		$sql = "INSERT INTO ".TABLE_PREFIX.self::IMAGES."
 				VALUES(
 					'',
-					'".filter_var($_POST['name'], FILTER_SANITIZE_STRING)."',
+					'".$name."',
 					'".filter_var($_POST['description'], FILTER_SANITIZE_STRING)."',
 					'".filter_var($_POST['credits'], FILTER_SANITIZE_STRING)."',
 					'yes',
@@ -304,6 +306,15 @@ class Albums {
 		$insertID = $this->db->lastInsertId();
 		self::addToOrder($_POST['album'], $insertID);
 		return($insertID);
+	}
+
+	private function checkImageNameIsUnique($name) {
+		$sql = "SELECT COUNT(*) FROM ".TABLE_PREFIX.self::IMAGES." WHERE name='$name'";
+		$result = self::executeSql($sql);
+		if($result[0]['COUNT(*)'] != 0) { return
+			$name . '-' . time();
+		}
+		else { return $name; }
 	}
 
 	public function uploadImage($id, $_POST) {

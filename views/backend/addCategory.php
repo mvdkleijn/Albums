@@ -1,5 +1,9 @@
 <h1>Create a new Category:</h1>
 
+<div class="metaData">
+	<p>&laquo; <a href="<?php echo get_url('albums/categories'); ?>">Back to categories</a></p>
+</div>
+
 <script type="text/javascript">
 	function startCallback() {
 		return true;
