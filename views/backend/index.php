@@ -30,14 +30,16 @@
 ?>
 	<div class="album">
 		<p><small>Album:</small> <a href="<?php echo get_url('albums/view/'.$album['id'].''); ?>"><?php echo $album['name']; ?></a></p>
+			<ul class="allImages">
 <?php	foreach($images as $image) {
 			if($image['album'] == $album['id']) {
 ?>
-		<div class="image">
-			<a href="<?php echo get_url('albums/image/'.$image['id'].''); ?>"><img src="<?php echo Albums::urlToImage($image['id'], '100'); ?>" /></a>
-		</div>
+				<li>
+					<a href="<?php echo get_url('albums/image/'.$image['id'].''); ?>"><img src="<?php echo Albums::urlToImage($image['id'], '100'); ?>" /></a>
+				</li>
 <?php		}
 		}	?>
+		</ul>
 	</div>
 <?php		}
 		}

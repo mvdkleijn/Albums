@@ -34,6 +34,33 @@ class Albums {
 		}
 	}
 
+	public function clearLog() {
+		$sql = "DELETE FROM ".TABLE_PREFIX.self::LOGS."";
+		self::executeSql($sql);
+	}
+
+	public function getLogs($order=NULL, $limit=NULL) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::LOGS."";
+		if($order) $sql .= " ORDER BY $order";
+		if($limit) $sql .= " LIMIT $limit";
+		return self::executeSql($sql);
+	}
+
+	public function countLogs($key=NULL, $value=NULL) {
+		$sql = "SELECT COUNT(*) FROM ".TABLE_PREFIX.self::LOGS."";
+		if($key) $sql .= " WHERE $key='$value'";
+		$count = self::executeSql($sql);
+		$count = $count[0]['COUNT(*)'];
+		return $count;
+	}
+
+	public function firstImpression() {
+		$sql = "SELECT time FROM ".TABLE_PREFIX.self::LOGS." ORDER BY time ASC LIMIT 1";
+		$result = self::executeSql($sql);
+		if(count($result) != 0) { $result = $result[0]['time']; } else { $result = 0; }
+		return $result;
+	}
+
 	public function getAlbumList($order=NULL) {
 		$sql = "SELECT * FROM ".TABLE_PREFIX.self::ALBUMS."";
 		if($order) $sql .= " ORDER BY $order";

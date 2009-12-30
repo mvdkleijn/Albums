@@ -321,3 +321,7 @@ ul.allImages li {
 ul.allImages li:hover {
 	border: 1px solid #000;
 }
+
+#imageLog tr td {
+	font-size: 0.9em;
+}

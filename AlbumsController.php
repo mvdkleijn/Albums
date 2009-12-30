@@ -32,8 +32,18 @@ class AlbumsController extends PluginController {
 		$this->display('../plugins/albums/views/backend/documentation', array('settings' => Plugin::getAllSettings('albums')));
 	}
 
-	public function logs() {
-		$this->display('../plugins/albums/views/backend/logs', array('settings' => Plugin::getAllSettings('albums')));
+	public function logs($type=NULL) {
+		if($type == 'full') { 
+			$this->display('../plugins/albums/views/backend/viewLogsFull', array('logs' => Albums::getLogs()));
+		}
+		elseif($type == 'clear') {
+			Albums::clearLog();
+			Flash::set('success', __('The Image Request Log has been cleared'));
+			redirect(get_url('albums/logs'));
+		}
+		else {
+			$this->display('../plugins/albums/views/backend/viewLogs', array('firstImpression' => Albums::firstImpression(), 'count' => Albums::countLogs(), 'logs' => Albums::getLogs('id', 10), 'settings' => Plugin::getAllSettings('albums')));
+		}
 	}
 
 	public function saveSettings() {
