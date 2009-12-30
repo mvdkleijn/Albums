@@ -23,16 +23,6 @@
 			<td class="help">When browing in the admin area, you can view details for each album or view them in grid view, which is handy for sites with lots of albums.</td>
 		</tr>
 		<tr>
-			<td class="label">Logging</td>
-			<td class="field">
-				<select name="logging">
-					<option value="on"<?php if($settings['logging'] == 'on') echo ' selected="selected"'; ?>>On</option>
-					<option value="off"<?php if($settings['logging'] == 'off') echo ' selected="selected"'; ?>>Off</option>
-				</select>
-			</td>
-			<td class="help">You can enable logging of image impressions. This is handy to see how popular certain images are or if you want to display a view count.</td>
-		</tr>
-		<tr>
 			<td class="label">Format</td>
 			<td class="field">
 				<select name="format">
@@ -49,6 +39,32 @@
 				<input name="salt" value="<?php echo $settings['salt']; ?>" />
 			</td>
 			<td class="help">If you use the hash format above, you can change the salt here.</td>
+		</tr>
+		<tr>
+			<td class="label">Logging</td>
+			<td class="field">
+				<select name="logging">
+					<option value="on"<?php if($settings['logging'] == 'on') echo ' selected="selected"'; ?>>On</option>
+					<option value="off"<?php if($settings['logging'] == 'off') echo ' selected="selected"'; ?>>Off</option>
+				</select>
+			</td>
+			<td class="help">You can enable logging of image impressions. This is handy to see how popular certain images are or if you want to display a view count.</td>
+		</tr>
+		<tr>
+			<td class="label">Time to Keep Logs</td>
+			<td class="field">
+				<select name="logCollection">
+					<option value="0"<?php if($settings['logCollection'] == '0') echo ' selected="selected"'; ?>>-- never flush --</option>
+					<option value="86400"<?php if($settings['logCollection'] == '86400') echo ' selected="selected"'; ?>>1 Day</option>
+					<option value="604800"<?php if($settings['logCollection'] == '604800') echo ' selected="selected"'; ?>>1 Week</option>
+					<option value="1209600"<?php if($settings['logCollection'] == '1209600') echo ' selected="selected"'; ?>>2 Weeks</option>
+					<option value="2678400"<?php if($settings['logCollection'] == '2678400') echo ' selected="selected"'; ?>>1 Month</option>
+					<option value="8035200"<?php if($settings['logCollection'] == '8035200') echo ' selected="selected"'; ?>>3 Months</option>
+					<option value="16070400"<?php if($settings['logCollection'] == '16070400') echo ' selected="selected"'; ?>>6 Months</option>
+					<option value="31536000"<?php if($settings['logCollection'] == '31536000') echo ' selected="selected"'; ?>>1 Year</option>
+				</select>
+			</td>
+			<td class="help">If you don't flush logs, you can easily end up with a database that is huge on sites with large volumes of traffic.</td>
 		</tr>
 		<tr>
 			<td class="label">&nbsp;</td>

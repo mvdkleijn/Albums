@@ -17,6 +17,7 @@
 					VALUES
 						('albums','defaultView','detail'),
 						('albums','logging','off'),
+						('albums','logCollection','0'),
 						('albums','format','numeric'),
 						('albums','route','albums'),
 						('albums','salt','".time()."')

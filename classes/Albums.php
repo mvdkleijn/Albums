@@ -457,6 +457,9 @@ class Albums {
 	}
 
 	public function updateImage($_POST, $imageID) {
+		if($_POST['id'] == 'name') {
+			$_POST['content'] = self::checkImageNameIsUnique(filter_var($_POST['content'], FILTER_SANITIZE_STRING));
+		}
 		$sql = "UPDATE ".TABLE_PREFIX.self::IMAGES." SET
 					".$_POST['id']."='".filter_var($_POST['content'], FILTER_SANITIZE_STRING)."'
 				WHERE id='".$imageID."'";
