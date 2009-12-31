@@ -25,6 +25,75 @@ class Albums {
 		self::executeSql($sql);
 	}
 
+	public function calculateSizeOnDisk($type, $id=NULL, $measure=NULL) {
+		$size = 0;
+		switch($type) {
+			case 'image':
+				$images = self::getImage($id);
+				if(isset($images) && count($images) != 0) {
+					foreach($images as $image) {
+						$imageSize = filesize(PLUGINS_ROOT .'/albums/files/'.$image['id'].'.'.$image['extension']);
+						$size = $size + $imageSize;
+					}
+				}
+				break; 
+			case 'album':
+				$albums = self::getAlbum($id);
+				foreach($albums as $album) {
+					$images = self::getImagesByAlbum($album['id']);
+				}
+				if(isset($images) && count($images) != 0) {
+					foreach($images as $image) {
+						$imageSize = filesize(PLUGINS_ROOT .'/albums/files/'.$image['id'].'.'.$image['extension']);
+						$size = $size + $imageSize;
+					}
+				}
+				break; 
+			case 'category':
+				$images = array();
+				$categories = self::getCategory($id);
+				foreach($categories as $category) {
+					$albums = self::getAlbumByCategory($category['id']);
+					foreach($albums as $album) {
+						$images = self::getImagesByAlbum($album['id']);
+						foreach($images as $image) {
+							$imageSize = filesize(PLUGINS_ROOT .'/albums/files/'.$image['id'].'.'.$image['extension']);
+							$size = $size + $imageSize;
+						}
+					}
+				}
+				break; 
+			case 'all':
+				$images = self::getImages();
+				if(isset($images) && count($images) != 0) {
+					foreach($images as $image) {
+						$imageSize = filesize(PLUGINS_ROOT .'/albums/files/'.$image['id'].'.'.$image['extension']);
+						$size = $size + $imageSize;
+					}
+				}
+				break; 
+		}
+		switch($measure) {
+			case 'bytes':
+				$size = $size;
+			case 'kilobytes':
+				$size = $size / 1024;
+			case 'megabytes':
+				$size = $size / 1024 / 1024;
+		}
+		return $size;
+	}
+
+	public function getAlbumByCategory($category) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::ALBUMS." WHERE category='$category'";
+		return self::executeSql($sql);
+	}
+
+	public function getImagesByAlbum($albumID) {
+		$sql = "SELECT * FROM ".TABLE_PREFIX.self::IMAGES." WHERE album='$albumID'";
+		return self::executeSql($sql);
+	}
+
 	public function saveSettings($_POST) {
 		foreach($_POST as $key=>$value) {
 			$sql = "UPDATE ".TABLE_PREFIX.self::SETTINGS." SET
