@@ -26,21 +26,29 @@
 <?php	foreach($categories as $category) {
 ?>
 <div class="category">
-	<p>	<small>Category:</small> <a href="<?php echo get_url('albums/categories/'.$category['id'].''); ?>"><?php echo $category['name']; ?></a><br />
-		<strong><small>[<?php echo number_format(Albums::calculateSizeOnDisk('category', $category['id'], 'megabytes'), 2); ?>MB]</small></strong></p>
+	<p>	<small>Category:</small> <a href="<?php echo get_url('albums/categories/'.$category['id'].''); ?>"><?php echo $category['name']; ?></a>
+	<?php if($settings['displaySize'] == 'yes') { ?>
+		<br /><strong><small>[<?php echo number_format(Albums::calculateSizeOnDisk('category', $category['id'], 'megabytes'), 2); ?>MB]</small></strong>
+	<?php } ?>
+	</p>
 <?php	foreach($albums as $album) {
 			if($category['id'] == $album['category']) {
 ?>
 	<div class="album">
-		<p><small>Album:</small> <a href="<?php echo get_url('albums/view/'.$album['id'].''); ?>"><?php echo $album['name']; ?></a><br />
-			<strong><small>[<?php echo number_format(Albums::calculateSizeOnDisk('album', $album['id'], 'megabytes'), 2); ?>MB]</small></strong></p>
+		<p><small>Album:</small> <a href="<?php echo get_url('albums/view/'.$album['id'].''); ?>"><?php echo $album['name']; ?></a>
+		<?php if($settings['displaySize'] == 'yes') { ?>
+			<br /><strong><small>[<?php echo number_format(Albums::calculateSizeOnDisk('album', $album['id'], 'megabytes'), 2); ?>MB]</small></strong>
+		<?php } ?>
+		</p>
 			<ul class="allImages">
 <?php	foreach($images as $image) {
 			if($image['album'] == $album['id']) {
 ?>
 				<li>
-					<a href="<?php echo get_url('albums/image/'.$image['id'].''); ?>"><img src="<?php echo Albums::urlToImage($image['id'], '100'); ?>" /></a><br />
-					<small>[<?php echo number_format(Albums::calculateSizeOnDisk('image', $image['id'], 'megabytes'), 2); ?>MB]</small>
+					<a href="<?php echo get_url('albums/image/'.$image['id'].''); ?>"><img src="<?php echo Albums::urlToImage($image['id'], '100'); ?>" /></a>
+				<?php if($settings['displaySize'] == 'yes') { ?>
+					<br /><small>[<?php echo number_format(Albums::calculateSizeOnDisk('image', $image['id'], 'megabytes'), 2); ?>MB]</small>
+				<?php } ?>
 				</li>
 <?php		}
 		}	?>

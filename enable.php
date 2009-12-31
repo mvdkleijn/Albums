@@ -16,6 +16,7 @@
 					INSERT INTO `".TABLE_PREFIX."plugin_settings` (`plugin_id`,`name`,`value`)
 					VALUES
 						('albums','defaultView','detail'),
+						('albums','displaySize','yes'),
 						('albums','logging','off'),
 						('albums','logCollection','0'),
 						('albums','format','numeric'),

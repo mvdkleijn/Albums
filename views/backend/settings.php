@@ -23,6 +23,16 @@
 			<td class="help">When browing in the admin area, you can view details for each album or view them in grid view, which is handy for sites with lots of albums.</td>
 		</tr>
 		<tr>
+			<td class="label">Display Size</td>
+			<td class="field">
+				<select name="displaySize">
+					<option value="yes"<?php if($settings['displaySize'] == 'yes') echo ' selected="selected"'; ?>>Yes</option>
+					<option value="no"<?php if($settings['displaySize'] == 'no') echo ' selected="selected"'; ?>>No</option>
+				</select>
+			</td>
+			<td class="help">When selected, album, category and image sizes will be shown on the main page.</td>
+		</tr>
+		<tr>
 			<td class="label">Format</td>
 			<td class="field">
 				<select name="format">
